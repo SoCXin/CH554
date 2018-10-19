@@ -22,9 +22,9 @@ https://github.com/mcuyun/CH552X.git
 
 包括一些数据手册
 
-- code
+- projects
 
-包括一些代码和工程
+包括一些常用的工程
 
 ---
 
