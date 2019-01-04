@@ -2,11 +2,11 @@
 
 [![sites](mcuyun/mcuyun.png)](http://www.mcuyun.com)
 
-#### [8051内核](https://github.com/mcuyun/8051) 
+#### 设备归属：[8051内核](https://github.com/mcuyun/8051) 
 
 ## [简介](https://github.com/mcuyun/WCH/wiki) 
 
-WCH是出名的USB串口产品
+WCH是国内出名的USB通信产品，主要基于增强8051内核。
 
 ## [组成](mcuyun/) 
 
@@ -14,19 +14,15 @@ WCH是出名的USB串口产品
 
 #### [CH552](https://github.com/mcuyun/CH552) 
 
-低成本USB通信产品，可以直接将MCU和串口转换芯片合二为一
+极低成本USB通信芯片，拥有不错的处理速度和丰富的外设
 
 #### [CH554](https://github.com/mcuyun/CH554) 
 
-低成本USB通信产品，可以直接将MCU和串口转换芯片合二为一
+低成本USB通信芯片，功能全面资料丰富
 
 #### [CH558](https://github.com/mcuyun/CH558) 
 
-高性能USB通信芯片
-
-#### [CH559](https://github.com/mcuyun/CH558) 
-
-高性能USB通信芯片
+高性能USB通信芯片，十分强大丰富
 
 
 ---
