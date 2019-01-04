@@ -1,34 +1,36 @@
-﻿
-# WCH
+﻿# [WCH](https://github.com/mcuyun/WCH) 
 
-[![sites](docs/mcuyun.png)](http://www.mcuyun.com)
+[![sites](mcuyun/mcuyun.png)](http://www.mcuyun.com)
 
-### 简介
+#### [8051内核](https://github.com/mcuyun/8051) 
 
-WCH最出名的产品是CH340系列USB转TTL串口芯片，但是不可忽略他家的8051单片机，实惠好用，适合铺货。
+## [简介](https://github.com/mcuyun/WCH/wiki) 
+
+WCH是出名的USB串口产品
+
+## [组成](mcuyun/) 
+
+[![sites](mcuyun/wch.png)](http://wch.cn/mcu_guide)
+
+#### [CH552](https://github.com/mcuyun/CH552) 
+
+低成本USB通信产品，可以直接将MCU和串口转换芯片合二为一
+
+#### [CH554](https://github.com/mcuyun/CH554) 
+
+低成本USB通信产品，可以直接将MCU和串口转换芯片合二为一
+
+#### [CH558](https://github.com/mcuyun/CH558) 
+
+高性能USB通信芯片
+
+#### [CH559](https://github.com/mcuyun/CH558) 
+
+高性能USB通信芯片
+
 
 ---
 
-## CH552
-
-是最适合用来做低成本USB通信产品，可以直接将MCU和串口转换芯片合二为一，物美价廉
-
-https://github.com/mcuyun/CH552X.git
-
-
-### 组成
-
-- docs
-
-包括一些数据手册
-
-- projects
-
-包括一些常用的工程
-
----
-
-### 说明
-
-2018-10-19: 创建工程仓库
-
+###  [悠云，为嵌入式](http://www.mcuyun.com)
+####  qitas@qitas.cn
+####  2019-1-4
