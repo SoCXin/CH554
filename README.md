@@ -2,7 +2,7 @@
 [![sites](SoC/SoC.png)](http://www.qitas.cn) 
 ####  qitas@qitas.cn
 #### 父级：[CH55系列](https://github.com/sochub/CH55)
-#### 归属：[8051内核](https://github.com/sochub/8051) 
+#### 归属：[8051](https://github.com/sochub/8051) 
 
 ### [简介](https://github.com/sochub/CH554/wiki)
 
@@ -17,9 +17,7 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 主要特点：
 
 * USB2.0全速主机或设备模式
-* 2路PWM输出
-* 2个异步串口
-* 1个SPI接口
+* 2路PWM输出,2个异步串口,1个SPI接口
 * 芯片封装：TSSOP20、MSOP10、SOP16
 * 参考价格：1.5元
 
@@ -31,9 +29,11 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 
 ### [替换方案](https://github.com/sochub/CH554)
 
-2倍以内的性能和资源增强可选[CH558](https://github.com/sochub/CH558)或[CH559](https://github.com/sochub/CH559) 进行替换，包括更多的IO外设和存储资源
+2倍左右性能和资源增幅可选[CH558](https://github.com/sochub/CH558)或[CH559](https://github.com/sochub/CH559)替换，提供LQFP48封装
 
-相同规格成本略低替换可选[CH552](https://github.com/sochub/CH552)或[CH551](https://github.com/sochub/CH551) 进行替换，可以封装兼容
+相同规格成本略低替换可选[CH552](https://github.com/sochub/CH552)或[CH551](https://github.com/sochub/CH551)替换，代码和封装兼容
+
+更多功能接口或无线集成可选[CH56系列](https://github.com/sochub/CH56)或[CH57系列](https://github.com/sochub/CH57)替换，同厂方案
 
 ### [芯片应用](https://github.com/sochub/CH554)
 
