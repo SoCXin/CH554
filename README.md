@@ -23,9 +23,13 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 
 ### [资源组成](https://github.com/sochub/CH554)
 
-* [文档](docs/)
-* [资源](src/)
-* [工程](project/)
+* [参考文档](docs/)
+	* [芯片手册](docs/)
+* [参考资源](src/)
+	* [串口通信](src/)
+	* [复合设备](src/)
+	* [U盘设备](src/)
+* [模板工程](demo/)
 
 ### [替换方案](https://github.com/sochub/CH554)
 
@@ -35,8 +39,7 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 
 更多功能接口或无线集成可选[CH56系列](https://github.com/sochub/CH56)或[CH57系列](https://github.com/sochub/CH57)替换，同厂方案
 
-近似的规格和8051处理器架构，存储资源更大封装更丰富，外设性能更高的替换需求可选[CH54系列](https://github.com/sochub/CH54)
-
+近似8051处理器，全面升级替换可选[CH54系列](https://github.com/sochub/CH54)
 
 
 ### [芯片应用](https://github.com/sochub/CH554)
