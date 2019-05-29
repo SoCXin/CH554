@@ -1,38 +1,23 @@
-# CH554 software development kit for SDCC [![Build Status](https://travis-ci.org/Blinkinlabs/ch554_sdcc.svg?branch=master)](https://travis-ci.org/Blinkinlabs/ch554_sdcc)
-
-![image](https://raw.githubusercontent.com/Blinkinlabs/ch554_sdcc/master/documentation/devboard.png)
+# CH554 SDCC DEMO[![Build Status](https://travis-ci.org/Blinkinlabs/ch554_sdcc.svg?branch=master)](https://travis-ci.org/Blinkinlabs/ch554_sdcc)
 
 This is a port of the CH554 SDK, from Keil C51 to SDCC.
 
 The CH554 family of microcontrollers is notable because it has both an extremely low cost, USB device and host peripherals, and a preloaded USB bootloader.
 
-# Getting Started
+# 使用
 
-## Get the toolchain: Windows
+##  Windows下使用SDCC
 
-You'll need a recent version of SDCC, as well as mingw for make, and likely also git-bash for the bash shell. Additionally, you'll need WCHISPTOOL to upload code to the chips.
-
+依赖的软件工具：
 
 * [git for windows](https://github.com/git-for-windows/git/releases/download/v2.15.1.windows.2/Git-2.15.1.2-64-bit.exe)
 * [SDCC 3.6.0](https://sourceforge.net/projects/sdcc/files/latest/download?source=files)
 * [mingw installer](https://downloads.sourceforge.net/project/mingw/Installer/mingw-get-setup.exe)
 * [WCHISPTOOL](http://wch.cn/download/WCHISPTool_Setup_exe.html)
 
-TODO: How to set up the enviroment to find these bits automatically
+配置相应的path路径，主要是SDCC和mingw32，通过CMD进入命令行，进入到examples下的各个工程中，mingw32-make开始编译
 
-Once the tools are installed, add the following lines to the end of your .bashrc file:
-
-    # SDCC compiler tools
-    export PATH=$PATH:/c/Program\ Files/SDCC/bin
-
-    # Mingw tools (for Make)
-    export PATH=$PATH:/c/Qt/Qt5.10.0/Tools/mingw530_32/bin
-
-    alias make=mingw32-make.exe
-
-TODO: Use standalone mingw tools instead of the ones from Qt
-
-## Get the toolchain: Linux
+## Linux下使用SDCC
 
 For Debian-based systems, this should work:
 
@@ -48,7 +33,7 @@ The Makefile has "flash" operation, you have a convenient way to flash your chip
 
 The usb-device-cdc-i2c example show you how to have a in-application firmware upgrade, it will make use of prelude flash operation..
 
-## Get the toolchain: macOs
+## macOS下使用
 
 You'll need xcode (for make), as well as SDCC. ISP Tool will be same as Linux's.
 
@@ -213,16 +198,4 @@ Here is a list of the different peripheral drivers and examples that need to be 
 | Compound_Dev | USB device peripheral: compound device example (?) | not started |
 | USB\Host | USB host peripheral: hub (?) example | not started |
 | USB\U_DISK | USB host peripheral: read/write USB mass storage device | not started |
-
-# Contributing 
-
-Contributions are welcome! Please see CONTRIBUTING.md
-
-# References
-
-* [Official CH554 SDK (snapshot)](https://github.com/HonghongLu/CH554)
-* [SDCC Compiler Users Guide](http://sdcc.sourceforge.net/doc/sdccman.pdf)
-* [CH554 manual (Chinese)](https://github.com/HonghongLu/CH554/blob/master/CH554DS1.PDF)
-* [CH554 manual (English-ish translation)](https://github.com/Blinkinlabs/ch554_sdcc/blob/master/documentation/CH554%20manual%20english.pdf)
-* [CH554 instruction set timings](https://github.com/HonghongLu/CH554/blob/master/official%20ch554%20evt%20pcb/PUB/CH55X%C2%AA%E2%80%9E%C2%B1%E2%80%A1%C3%B7%E2%88%8F%C2%A1%C3%93.PDF)
 
