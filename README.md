@@ -1,10 +1,10 @@
 ﻿# [CH554](https://github.com/sochub/CH554) 
 [![sites](SoC/SoC.png)](http://www.qitas.cn) 
-####  qitas@qitas.cn
-#### 父级：[CH55系列](https://github.com/sochub/CH55)
-#### 归属：[8051](https://github.com/sochub/8051) 
+#### 厂商：[WCH](https://github.com/sochub/WCH)
+#### 父级：[CH55x](https://github.com/sochub/CH55)
+#### 架构：[8051](https://github.com/sochub/8051) 
 
-### [简介](https://github.com/sochub/CH554/wiki)
+### [CH554简介](https://github.com/sochub/CH554/wiki)
 
 CH554是WCH的一款增强型8051内核单片机，79%的指令是单字节单周期指令，内置24MHz时钟源，内置1K+256B RAM，16KB iFlash-ROM。
 
@@ -19,9 +19,8 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 * USB2.0全速主机或设备模式
 * 2路PWM输出 + 2个异步串口 + 1个SPI接口
 * 芯片封装：TSSOP20、MSOP10、SOP16
-* 参考价格：1.5元
 
-### [资源组成](https://github.com/sochub/CH554)
+### [资源收录](https://github.com/sochub/CH554)
 
 * [参考文档](docs/)
 	* [芯片手册](docs/)
@@ -32,7 +31,7 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 		* [U盘设备](src/keil/udisk/)
 	* [SDCC工程](src/SDCC/)
 
-### [替换方案](https://github.com/sochub/CH554)
+### [选型建议](https://github.com/sochub/CH554)
 
 2倍左右性能和资源增幅可选[CH558](https://github.com/sochub/CH558)或[CH559](https://github.com/sochub/CH559)替换，提供LQFP48封装
 
@@ -42,15 +41,4 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 
 近似8051处理器，全面升级替换可选[CH54系列](https://github.com/sochub/CH54)
 
-
-### [芯片应用](https://github.com/sochub/CH554)
-
-* [OS-Q：USB管道设备L](https://github.com/OS-Q/D95)
-
-### [项目参考](https://github.com/sochub/CH554)
-
-* [ch554 SDCC](https://github.com/Blinkinlabs/ch554_sdcc)
-* [ch554 USB](https://github.com/rikka0w0/CH55x_USB_CompositeDevice)
-
-##  [SoC资源平台](http://www.qitas.cn)  
-
+###  [SoC资源平台](http://www.qitas.cn)  
