@@ -21,9 +21,10 @@
 #endif
 
 #ifndef  DE_PRINTF
-#define  DE_PRINTF     0
+#define  DE_PRINTF     1
 #endif
-#define	 FREQ_SYS	     12000000	         //系统主频12MHz
+
+#define	 FREQ_SYS	     24000000	         //系统主频12MHz
 #ifndef  UART0_BUAD
 #define  UART0_BUAD    57600
 #define  UART1_BUAD    57600
@@ -41,6 +42,6 @@ void	UART1Setup( );                     //
 UINT8 CH554UART1RcvByte( );              //CH554 UART1查询方式接收一个字节
 void  CH554UART1SendByte(UINT8 SendDat); //CH554UART1发送一个字节
 
-void CH554WDTModeSelect(UINT8 mode);     //CH554看门狗模式设置 
-void CH554WDTFeed(UINT8 tim);            //CH554看门狗喂狗
+void CH554WatchDog(UINT8 mode);          //CH554看门狗模式设置
+void CH554WatchDogFeed(UINT8 tim);       //CH554看门狗喂狗
 #endif

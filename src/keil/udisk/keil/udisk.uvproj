@@ -377,14 +377,14 @@
           <GroupName>user</GroupName>
           <Files>
             <File>
-              <FileName>u_disk.c</FileName>
+              <FileName>Udisk.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\u_disk.c</FilePath>
+              <FilePath>..\user\Udisk.c</FilePath>
             </File>
             <File>
               <FileName>DEBUG.C</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Public\DEBUG.C</FilePath>
+              <FilePath>..\user\DEBUG.C</FilePath>
             </File>
           </Files>
         </Group>

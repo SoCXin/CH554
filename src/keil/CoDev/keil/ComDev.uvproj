@@ -7,20 +7,20 @@
 
   <Targets>
     <Target>
-      <TargetName>qtias</TargetName>
+      <TargetName>qitas</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>SST89C54</Device>
-          <Vendor>SST</Vendor>
-          <Cpu>IRAM(0-0xFF) IROM(0-0x3FFF) CLOCK(33000000)</Cpu>
+          <Device>AT89C52</Device>
+          <Vendor>Atmel</Vendor>
+          <Cpu>IRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll></FlashDriverDll>
-          <DeviceId>2932</DeviceId>
-          <RegisterFile>REG52.H</RegisterFile>
+          <DeviceId>2980</DeviceId>
+          <RegisterFile>REGX52.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -36,8 +36,8 @@
           <BinPath></BinPath>
           <IncludePath></IncludePath>
           <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
-          <DBRegisterFilePath></DBRegisterFilePath>
+          <RegisterFilePath>Atmel\</RegisterFilePath>
+          <DBRegisterFilePath>Atmel\</DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -46,7 +46,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\obj\</OutputDirectory>
-          <OutputName>CH340</OutputName>
+          <OutputName>ComDev</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -110,11 +110,11 @@
           <SimDllName>S8051.DLL</SimDllName>
           <SimDllArguments></SimDllArguments>
           <SimDlgDll>DP51.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pSST5X</SimDlgDllArguments>
+          <SimDlgDllArguments>-p52</SimDlgDllArguments>
           <TargetDllName>S8051.DLL</TargetDllName>
           <TargetDllArguments></TargetDllArguments>
           <TargetDlgDll>TP51.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pSST5X</TargetDlgDllArguments>
+          <TargetDlgDllArguments>-p52</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -273,7 +273,7 @@
               <IRO>
                 <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x4000</Size>
+                <Size>0x2000</Size>
               </IRO>
               <IRA>
                 <Type>0</Type>
@@ -314,7 +314,7 @@
             <uAregs>0</uAregs>
             <UseInterruptVector>1</UseInterruptVector>
             <Fuzzy>3</Fuzzy>
-            <Optimize>8</Optimize>
+            <Optimize>6</Optimize>
             <WarningLevel>2</WarningLevel>
             <SizeSpeed>1</SizeSpeed>
             <ObjectExtend>1</ObjectExtend>
@@ -348,7 +348,7 @@
             <DataOverlaying>1</DataOverlaying>
             <OverlayString></OverlayString>
             <MiscControls></MiscControls>
-            <DisableWarningNumbers></DisableWarningNumbers>
+            <DisableWarningNumbers>16</DisableWarningNumbers>
             <LinkerCmdFile></LinkerCmdFile>
             <Assign></Assign>
             <ReserveString></ReserveString>
@@ -377,14 +377,24 @@
           <GroupName>user</GroupName>
           <Files>
             <File>
-              <FileName>Debug.C</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Public\Debug.C</FilePath>
+              <FilePath>..\user\main.c</FilePath>
             </File>
             <File>
-              <FileName>CompatibilityHID.C</FileName>
+              <FileName>DEBUG.C</FileName>
               <FileType>1</FileType>
-              <FilePath>.\USB\Device\CompatibilityHID.C</FilePath>
+              <FilePath>..\user\DEBUG.C</FilePath>
+            </File>
+            <File>
+              <FileName>Compound.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Compound.C</FilePath>
+            </File>
+            <File>
+              <FileName>Touch_Key.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Touch_Key.C</FilePath>
             </File>
           </Files>
         </Group>

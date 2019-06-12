@@ -1,16 +1,16 @@
 
 /********************************** (C) COPYRIGHT *******************************
-* File Name          :CompatibilityHID.C
-* Author             : WCH
-* Version            : V1.0
-* Date               : 2017/01/20
-* Description        : CH554模拟HID兼容设备，支持中断上下传，支持设置全速，低速 
+* File Name          :HID.C
+* Author             : 
+* Version            :
+* Date               :
+* Description        :CH554模拟HID兼容设备，支持中断上下传，支持设置全速，低速 
 *******************************************************************************/
-
-#include "./Public/CH554.H"
-#include "./Public/Debug.H"
 #include <stdio.h>
 #include <string.h>
+#include "CH554.h"
+#include "Debug.h"
+
 
 #define THIS_ENDP0_SIZE         DEFAULT_ENDP0_SIZE
 

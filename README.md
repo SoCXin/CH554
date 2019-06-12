@@ -1,7 +1,7 @@
 ﻿# [CH554](https://github.com/sochub/CH554) 
 [![sites](SoC/SoC.png)](http://www.qitas.cn) 
 #### 厂商：[WCH](https://github.com/sochub/WCH)
-#### 父级：[CH55x](https://github.com/sochub/CH55)
+#### 归属：[CH55x](https://github.com/sochub/CH55)
 #### 架构：[8051](https://github.com/sochub/8051) 
 
 ### [CH554简介](https://github.com/sochub/CH554/wiki)
@@ -20,6 +20,8 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 * 2路PWM输出 + 2个异步串口 + 1个SPI接口
 * 芯片封装：TSSOP20、MSOP10、SOP16
 
+[![sites](SoC/SOP.png)](http://www.wch.cn/products/CH554.html) 
+
 ### [资源收录](https://github.com/sochub/CH554)
 
 * [参考文档](docs/)
@@ -30,6 +32,7 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 		* [复合设备](src/keil/CoDev/)
 		* [U盘设备](src/keil/udisk/)
 	* [SDCC工程](src/SDCC/)
+
 
 ### [选型建议](https://github.com/sochub/CH554)
 

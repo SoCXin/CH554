@@ -1,16 +1,17 @@
 /********************************** (C) COPYRIGHT ******************************
 * File Name          :Compound_Dev.C											
-* Author             : WCH                                                      
+* Author             :                                                      
 * Version            : V1.0                                                     
 * Date               : 2017/03/15                                               
 * Description        : A demo for USB compound device created by CH554, support 
 					   keyboard and mouse, and HID compatible device.           
 ********************************************************************************/
-#include 	".\Public\CH554.H"
-#include	"Compound.h"
-#include 	".\Public\debug.h"
-#include ".\Touch_Key\Touch_Key.H"
-#include 	"stdio.h"
+#include 	<stdio.h>
+#include 	"CH554.H"
+
+#include 	"Debug.H"
+#include "Touch_Key.H"
+#include	"Compound.H"
 
 extern UINT8 	FLAG;												  // Trans complete flag
 extern UINT8 	EnumOK;												// Enum ok flag
@@ -43,7 +44,7 @@ void main( void )
         }
         else
         {
-            if(TKEY_CTRL&bTKC_IF)           //wait query finsh,max 2ms »ñÈ¡¼üÖµ»ù×¼Öµ£¬¶à²ÉÑù¼¸´Î
+            if(TKEY_CTRL&bTKC_IF)           //wait query finsh,max 2ms ï¿½ï¿½È¡ï¿½ï¿½Öµï¿½ï¿½×¼Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {							
             TouchKeyButton = TKEY_DAT;      //	
 #ifdef DE_PRINTF

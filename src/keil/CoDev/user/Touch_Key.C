@@ -6,11 +6,11 @@
 * Date               : 2017/01/20
 * Description        : CH554 触摸按键采样间隔设置、通道选择和切换和中断处理函数   
 *******************************************************************************/
-
-#include "..\Public\CH554.H"                                                       
-#include "..\Public\DEBUG.H"
+#include 	<stdio.h>
+#include "CH554.H"                                                       
+#include "DEBUG.H"
 #include "Touch_Key.H"
-#include "stdio.h"
+
 
 #pragma  NOAREGS
 

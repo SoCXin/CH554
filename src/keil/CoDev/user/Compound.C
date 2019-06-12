@@ -6,13 +6,13 @@
 * Description        : A demo for USB compound device created by CH554, support 
 					   keyboard , and HID-compliant device.                     
 ********************************************************************************/
-
-#include 	".\Public\CH554.H"
-#include 	".\Public\DEBUG.H"
-#include 	"compound.h"
 #include 	<stdio.h>
 #include 	<stdlib.h>
 #include 	<string.h>
+#include 	"CH554.H"
+#include 	"DEBUG.H"
+#include 	"compound.h"
+
 
 
 #define 	THIS_ENDP0_SIZE         DEFAULT_ENDP0_SIZE

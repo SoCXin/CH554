@@ -4,10 +4,7 @@
 * Version            : V1.0
 * Date               : 2017/01/20
 * Description        : CH554 DEBUG Interface
-                     CH554主频修改、延时函数定义
-                     串口0和串口1初始化
-                     串口0和串口1的收发子函数
-                     看门狗初始化										 
+                     (1)、串口0输出打印信息，波特率可变;              				   
 *******************************************************************************/
 
 #include "CH554.H"
@@ -15,9 +12,10 @@
 
 /*******************************************************************************
 * Function Name  : CfgFsys( )
-* Description    : CH554时钟选择和配置函数,默认使用Fsys 6MHz，FREQ_SYS可以通过
-                   CLOCK_CFG配置得到，公式如下：
-                   Fsys = (Fosc * 4/(CLOCK_CFG & MASK_SYS_CK_SEL);具体时钟需要自己配置 
+* Description    : CH554时钟选择和配置函数,默认使用内部晶振12MHz，如果定义了FREQ_SYS可以
+                   根据PLL_CFG和CLOCK_CFG配置得到，公式如下：
+                   Fsys = (Fosc * ( PLL_CFG & MASK_PLL_MULT ))/(CLOCK_CFG & MASK_SYS_CK_DIV);
+                   具体时钟需要自己配置
 * Input          : None
 * Output         : None
 * Return         : None
@@ -30,10 +28,9 @@ void	CfgFsys( )
 //     CLOCK_CFG &= ~bOSC_EN_INT;                        //关闭内部晶振    
 		SAFE_MOD = 0x55;
 		SAFE_MOD = 0xAA;
-// 		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x07;  // 32MHz	
-// 		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x06;  // 24MHz	
+ 		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x06;  // 24MHz	
 // 		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x05;  // 16MHz	
-		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x04;  // 12MHz
+//		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x04;  // 12MHz
 // 		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x03;  // 6MHz	
 // 		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x02;  // 3MHz	
 // 		CLOCK_CFG = CLOCK_CFG & ~ MASK_SYS_CK_SEL | 0x01;  // 750KHz	
@@ -121,7 +118,7 @@ void	mDelaymS( UINT16 n )                                                  // 以
 
 /*******************************************************************************
 * Function Name  : CH554UART0Alter()
-* Description    : CH554串口0引脚映射,串口映射到P0.2和P0.3
+* Description    : CH554串口0引脚映射,
 * Input          : None
 * Output         : None
 * Return         : None
@@ -160,8 +157,8 @@ void	mInitSTDIO( )
     T2MOD = T2MOD | bTMR_CLK | bT1_CLK;                                        //Timer1时钟选择
     TH1 = 0-x;                                                                 //12MHz晶振,buad/12为实际需设置波特率
     TR1 = 1;                                                                   //启动定时器1
-    TI = 1;
     REN = 1;                                                                   //串口0接收使能
+	TI = 1;
 }
 
 /*******************************************************************************
@@ -201,10 +198,12 @@ void CH554UART0SendByte(UINT8 SendDat)
 *******************************************************************************/
 void	UART1Setup( )
 {
-   U1SM0 = 0;                                                                   //UART1选择8位数据位
-   U1SMOD = 1;                                                                  //快速模式
-   U1REN = 1;                                                                   //使能接收
-   SBAUD1 = 0 - FREQ_SYS/16/UART1_BUAD;
+  U1SM0 = 0;                                                                   //UART1选择8位数据位
+  U1SMOD = 1;                                                                  //快速模式
+  U1REN = 1;                                                                   //使能接收
+  SBAUD1 = 0 - FREQ_SYS/16/UART1_BUAD;
+  IE_UART1 = 1;
+  EA = 1;
 }
 
 /*******************************************************************************
@@ -232,40 +231,40 @@ void CH554UART1SendByte(UINT8 SendDat)
 {
 	SBUF1 = SendDat;                                                             //查询发送，中断方式可不用下面2条语句,但发送前需TI=0
 	while(U1TI ==0);
-	U1TI = 1;
+	U1TI = 0;
 }
 
 /*******************************************************************************
-* Function Name  : CH554WDTModeSelect(UINT8 mode)
-* Description    : CH554看门狗模式选择
+* Function Name  : CH554WatchDog(UINT8 mode)
+* Description    : CH554看门狗模式设置
 * Input          : UINT8 mode 
                    0  timer
                    1  watchDog
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CH554WDTModeSelect(UINT8 mode)
+void CH554WatchDog(UINT8 mode)
 {
-   SAFE_MOD = 0x55;
-   SAFE_MOD = 0xaa;                                                             //进入安全模式
-   if(mode){
-     GLOBAL_CFG |= bWDOG_EN;                                                    //启动看门狗复位
-   }
-   else GLOBAL_CFG &= ~bWDOG_EN;	                                            //启动看门狗仅仅作为定时器
-   SAFE_MOD = 0x00;                                                             //退出安全模式
-   WDOG_COUNT = 0;                                                              //看门狗赋初值
+  SAFE_MOD = 0x55;
+  SAFE_MOD = 0xaa;                                                             //进入安全模式
+  if(mode){
+    GLOBAL_CFG |= bWDOG_EN;
+  }
+  else GLOBAL_CFG &= ~bWDOG_EN;	
+  SAFE_MOD = 0x00;                                                             //退出安全模式
+  WDOG_COUNT = 0;                                                              //看门狗赋初值
 }
 
 /*******************************************************************************
-* Function Name  : CH554WDTFeed(UINT8 tim)
-* Description    : CH554看门狗定时时间设置
+* Function Name  : CH554WatchDogFeed(UINT8 tim)
+* Description    : CH554看门狗喂狗
 * Input          : UINT8 tim 看门狗复位时间设置
                    00H(6MHz)=2.8s
                    80H(6MHz)=1.4s
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CH554WDTFeed(UINT8 tim)
+void CH554WatchDogFeed(UINT8 tim)
 {
-   WDOG_COUNT = tim;                                                             //看门狗计数器赋值	
+  WDOG_COUNT = tim;                                                             //看门狗赋初值	
 }
