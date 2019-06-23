@@ -33,6 +33,7 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 		* [U盘设备](src/keil/udisk/)
 	* [SDCC工程](src/SDCC/)
 
+* [编译工具SDCC安装](https://github.com/sochub/sdcc-x64)
 
 ### [选型建议](https://github.com/sochub/CH554)
 
