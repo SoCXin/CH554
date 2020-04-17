@@ -1,15 +1,14 @@
 /********************************** (C) COPYRIGHT *******************************
-* File Name          : Udisk.c
-* Author             : 
-* Version            : 
-* Date               : 
-* Description        : 
+* File Name          : udisk.c
+* Author             : WCH
+* Version            : V1.0
+* Date               : 2017/03/08
+* Description        : CH554Ä£ÄâUÅÌ
 *******************************************************************************/
-#include <stdio.h>
-#include <string.h>
 #include "CH554.H"
 #include "DEBUG.H"
-
+#include <stdio.h>
+#include <string.h>
 #pragma  NOAREGS
 
 UINT8X  Ep0Buffer[DEFAULT_ENDP0_SIZE] _at_ 0x0000; 
@@ -18,24 +17,24 @@ UINT8X  Ep1Buffer[2*MAX_PACKET_SIZE] _at_ DEFAULT_ENDP0_SIZE;
 UINT8   UsbConfig = 0; 
 #define UsbSetupBuf     ((PUSB_SETUP_REQ)Ep0Buffer)
 
-
+/*Éè±¸ÃèÊö·û*/
 UINT8C  MyDevDescr[] = { 0x12, 0x01, 0x10, 0x01,
                          0x00, 0x00, 0x00, DEFAULT_ENDP0_SIZE,
-                         0x44, 0x33, 0x33, 0x35,                           
+                         0x44, 0x33, 0x33, 0x35,                              // ³§ÉÌIDºÍ²úÆ·ID
                          0x00, 0x01, 0x01, 0x02,
                          0x00, 0x01
                        };
-
+/*ÅäÖÃÃèÊö·û*/
 UINT8C  MyCfgDescr[] = { 0x09, 0x02, 0x20, 0x00, 0x01, 0x01, 0x00, 0xa0, 0x32,
                          0x09, 0x04, 0x00, 0x00, 0x02, 0x08, 0x06, 0x50, 0x00,                     
                          0x07, 0x05, 0x01, 0x02, 0x40, 0x00, 0x00,
                          0x07, 0x05, 0x81, 0x02, 0x40, 0x00, 0x00
                        };
-
+/*ÓïÑÔÃèÊö·û*/
 UINT8C  MyLangDescr[] = { 0x04, 0x03, 0x09, 0x04 };
-
+/*³§¼ÒÐÅÏ¢*/
 UINT8C  MyManuInfo[] = { 0x0E, 0x03, 'w', 0, 'c', 0, 'h', 0, '.', 0, 'c', 0, 'n', 0 };
-
+/*²úÆ·ÐÅÏ¢*/
 UINT8C  MyProdInfo[] = { 0x0C, 0x03, 'C', 0, 'H', 0, '5', 0, '5', 0, '4', 0 };
 
 UINT8C  MAX_LUN[] = {0};
@@ -52,7 +51,8 @@ UINT8C	DBINQUITY[]={
 						00 ,			//Reserved
 						00 ,				//Reserved
 
-					  'w' ,			//Vendor Information
+
+					    'w' ,			//Vendor Information
 						'c' ,			//
 						'h' ,			//
 						'.' ,			//
@@ -61,7 +61,8 @@ UINT8C	DBINQUITY[]={
 						' ' ,			//
 						' ' ,			//
 
-        		0xc7,			//Product Identification
+
+        			    0xc7,			//Product Identification
 						0xdf, 			//
 						0xba,			//
 						0xe3,			//
@@ -83,9 +84,9 @@ UINT8C	DBINQUITY[]={
 						'1' ,			//
 						'0'  			//
 						  };
-UINT8C DBFORMATCAP[]={0x00,0x00,0x00,0x08,0x00,0xec,0xdf,0xff,0x03,0x00,0x02,0x00}; //ï¿½É¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+UINT8C DBFORMATCAP[]={0x00,0x00,0x00,0x08,0x00,0xec,0xdf,0xff,0x03,0x00,0x02,0x00}; //¿É¸ñÊ½»¯ÈÝÁ¿
 UINT8C DBCAPACITY[]={0x00,0xec,0xdf,0xff,0x00,0x00,0x02,0x00};
-UINT8C modesense3F[]={0x0b, 0x00, 0x80, 0x08, 0x00,0x00,0x00,0x00,0x00, 0x00, 0x02, 0x00 };   //Ð´ï¿½ï¿½ï¿½ï¿½(0x80ï¿½ï¿½ï¿½ï¿½0x00ï¿½ï¿½ï¿½ï¿½È¥ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½)
+UINT8C modesense3F[]={0x0b, 0x00, 0x80, 0x08, 0x00,0x00,0x00,0x00,0x00, 0x00, 0x02, 0x00 };   //Ð´±£»¤(0x80»»³É0x00¿ÉÒÔÈ¥³ýÐ´±£»¤)
 UINT8C DBR[512]={
 	             0xeb,0xfe,0x90,0x4d,0x53,0x44,0x4f,0x53, 0x35,0x2e,0x30,0x00,0x02,0x08,0x20,0x00,
                  0x02,0x00,0x00,0x00,0x00,0xf0,0x00,0x00, 0x3f,0x00,0xff,0x00,0x00,0x00,0x00,0x00,
@@ -104,7 +105,7 @@ UINT8C DBR[512]={
 				 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 				 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 				 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+                 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 				 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 				 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 				 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -208,60 +209,60 @@ typedef  union _MASS_PARA {
 }MASS_PARA;
 
 union {
-unsigned long mDataLength;							//ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½
+unsigned long mDataLength;							//Êý¾Ý³¤¶È
 unsigned char mdataLen[4];							//
 } UFI_Length;
 unsigned char mdCBWTag[4];						    //dCBWTag
 MASS_PARA  MassPara;
-bit CH375BULKUP=0;									//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
-bit CH375BULKDOWN = 0;						       //ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½						  
-bit CH375CSW=0;										//CSWï¿½Ï´ï¿½ï¿½ï¿½Ö¾
+bit CH375BULKUP=0;									//Êý¾ÝÉÏ´«
+bit CH375BULKDOWN = 0;						       //Êý¾ÝÏÂ´«						  
+bit CH375CSW=0;										//CSWÉÏ´«±êÖ¾
 unsigned char	BcswStatus;							//CSW×´Ì¬
 unsigned char mSenseKey;
 unsigned char mASC;
 
 unsigned char *pBuf;
 
-unsigned long SecNum;                              //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+unsigned long SecNum;                              //µ±Ç°²Ù×÷µÄÉÈÇøºÅ
 		
 /*******************************************************************************
 * Function Name  : InitUSB_Device()
-* Description    : USBï¿½è±¸Ä£Ê½ï¿½ï¿½ï¿½ï¿½
+* Description    : USBÉè±¸Ä£Ê½ÅäÖÃ
 * Input          : None
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void InitUSB_Device( void )                                                      // ï¿½ï¿½Ê¼ï¿½ï¿½USBï¿½è±¸
+void InitUSB_Device( void )                                                      // ³õÊ¼»¯USBÉè±¸
 {
-    USB_CTRL = 0x00;                                                           //ï¿½ï¿½ï¿½USBï¿½ï¿½ï¿½Æ¼Ä´ï¿½ï¿½ï¿½
-    USB_CTRL &= ~bUC_HOST_MODE;                                                //ï¿½ï¿½Î»ÎªÑ¡ï¿½ï¿½ï¿½è±¸Ä£Ê½
-    USB_CTRL |=  bUC_DEV_PU_EN | bUC_INT_BUSY | bUC_DMA_EN;                    //USBï¿½è±¸ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½,ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ú¼ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î´ï¿½ï¿½ï¿½Ç°ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½NAK
-    USB_DEV_AD = 0x00;                                                         //ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½Ê¼ï¿½ï¿½
+    USB_CTRL = 0x00;                                                           //Çå¿ÕUSB¿ØÖÆ¼Ä´æÆ÷
+    USB_CTRL &= ~bUC_HOST_MODE;                                                //¸ÃÎ»ÎªÑ¡ÔñÉè±¸Ä£Ê½
+    USB_CTRL |=  bUC_DEV_PU_EN | bUC_INT_BUSY | bUC_DMA_EN;                    //USBÉè±¸ºÍÄÚ²¿ÉÏÀ­Ê¹ÄÜ,ÔÚÖÐ¶ÏÆÚ¼äÖÐ¶Ï±êÖ¾Î´Çå³ýÇ°×Ô¶¯·µ»ØNAK
+    USB_DEV_AD = 0x00;                                                         //Éè±¸µØÖ·³õÊ¼»¯
 //     USB_CTRL |= bUC_LOW_SPEED;
-//     UDEV_CTRL |= bUD_LOW_SPEED;                                                //Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½1.5MÄ£Ê½
+//     UDEV_CTRL |= bUD_LOW_SPEED;                                                //Ñ¡ÔñµÍËÙ1.5MÄ£Ê½
     USB_CTRL &= ~bUC_LOW_SPEED;
-    UDEV_CTRL &= ~bUD_LOW_SPEED;                                             //Ñ¡ï¿½ï¿½È«ï¿½ï¿½12MÄ£Ê½ï¿½ï¿½Ä¬ï¿½Ï·ï¿½Ê½
-	  UDEV_CTRL = bUD_PD_DIS;  // ï¿½ï¿½Ö¹DP/DMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    UDEV_CTRL |= bUD_PORT_EN;                                                  //Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½
+    UDEV_CTRL &= ~bUD_LOW_SPEED;                                             //Ñ¡ÔñÈ«ËÙ12MÄ£Ê½£¬Ä¬ÈÏ·½Ê½
+	  UDEV_CTRL = bUD_PD_DIS;  // ½ûÖ¹DP/DMÏÂÀ­µç×è
+    UDEV_CTRL |= bUD_PORT_EN;                                                  //Ê¹ÄÜÎïÀí¶Ë¿Ú
 
-	UEP1_DMA = Ep1Buffer;                                                      //ï¿½Ëµï¿½1 ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½Ö·
-    UEP4_1_MOD = 0xC0;                                                         //ï¿½Ëµï¿½1ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½0ï¿½ï¿½64ï¿½Ö½ï¿½ï¿½Õ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    UEP1_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK | UEP_R_RES_ACK;                 //ï¿½Ëµï¿½1ï¿½Ô¶ï¿½ï¿½ï¿½×ªÍ¬ï¿½ï¿½ï¿½ï¿½Ö¾Î»ï¿½ï¿½INï¿½ï¿½ï¿½ñ·µ»ï¿½NAKï¿½ï¿½OUTï¿½ï¿½ï¿½ï¿½ACK
-	UEP0_DMA = Ep0Buffer;                                                      //ï¿½Ëµï¿½0ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½Ö·
-    UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;                                 //ï¿½Ö¶ï¿½ï¿½ï¿½×ªï¿½ï¿½OUTï¿½ï¿½ï¿½ñ·µ»ï¿½ACKï¿½ï¿½INï¿½ï¿½ï¿½ñ·µ»ï¿½NAK
+	UEP1_DMA = Ep1Buffer;                                                      //¶Ëµã1 Êý¾Ý´«ÊäµØÖ·
+    UEP4_1_MOD = 0xC0;                                                         //¶Ëµã1ÉÏÏÂ´«»º³åÇø£»¶Ëµã0µ¥64×Ö½ÚÊÕ·¢»º³åÇø
+    UEP1_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK | UEP_R_RES_ACK;                 //¶Ëµã1×Ô¶¯·­×ªÍ¬²½±êÖ¾Î»£¬INÊÂÎñ·µ»ØNAK£¬OUT·µ»ØACK
+	UEP0_DMA = Ep0Buffer;                                                      //¶Ëµã0Êý¾Ý´«ÊäµØÖ·
+    UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;                                 //ÊÖ¶¯·­×ª£¬OUTÊÂÎñ·µ»ØACK£¬INÊÂÎñ·µ»ØNAK
 	UEP0_T_LEN = 0;
-    UEP1_T_LEN = 0;                                                            //Ô¤Ê¹ï¿½Ã·ï¿½ï¿½Í³ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Òªï¿½ï¿½ï¿½
+    UEP1_T_LEN = 0;                                                            //Ô¤Ê¹ÓÃ·¢ËÍ³¤¶ÈÒ»¶¨ÒªÇå¿Õ
 	
-    USB_INT_EN |= bUIE_SUSPEND;                                               //Ê¹ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
-    USB_INT_EN |= bUIE_TRANSFER;                                              //Ê¹ï¿½ï¿½USBï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
-    USB_INT_EN |= bUIE_BUS_RST;                                               //Ê¹ï¿½ï¿½ï¿½è±¸Ä£Ê½USBï¿½ï¿½ï¿½ß¸ï¿½Î»ï¿½Ð¶ï¿½
-    USB_INT_FG |= 0x1F;                                                       //ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
-    IE_USB = 1;                                                               //Ê¹ï¿½ï¿½USBï¿½Ð¶ï¿½
-    EA = 1;                                                                   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½Ð¶ï¿½	
+    USB_INT_EN |= bUIE_SUSPEND;                                               //Ê¹ÄÜÉè±¸¹ÒÆðÖÐ¶Ï
+    USB_INT_EN |= bUIE_TRANSFER;                                              //Ê¹ÄÜUSB´«ÊäÍê³ÉÖÐ¶Ï
+    USB_INT_EN |= bUIE_BUS_RST;                                               //Ê¹ÄÜÉè±¸Ä£Ê½USB×ÜÏß¸´Î»ÖÐ¶Ï
+    USB_INT_FG |= 0x1F;                                                       //ÇåÖÐ¶Ï±êÖ¾
+    IE_USB = 1;                                                               //Ê¹ÄÜUSBÖÐ¶Ï
+    EA = 1;                                                                   //ÔÊÐíµ¥Æ¬»úÖÐ¶Ï	
 }
 /*******************************************************************************
 * Function Name  : UFI_Hunding
-* Description    : ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ UFI  CMD
+* Description    : ÃüÁîµÄ·ÖÀàÓëÊ¶±ð UFI  CMD
 * Input          : None
 * Output         : None
 * Return         : None
@@ -269,13 +270,13 @@ void InitUSB_Device( void )                                                     
 void UFI_Hunding(void ){		
 		switch(MassPara.cbw.cbwcb.buf1[0]){
 			case INQUIRY:                
-				pBuf = DBINQUITY;					                                      //ï¿½ï¿½Ñ¯Uï¿½ï¿½ï¿½ï¿½Ï¢
+				pBuf = DBINQUITY;					                                      //²éÑ¯UÅÌÐÅÏ¢
 				if(UFI_Length.mDataLength>sizeof(DBINQUITY)) UFI_Length.mDataLength=sizeof(DBINQUITY);
 				BcswStatus=0;
 				mSenseKey=0;
 				mASC=0;
 			break;
-			case FORMATCAP:                                                              //ï¿½É¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½8Gï¿½Ì£ï¿½
+			case FORMATCAP:                                                              //¿É¸ñÊ½»¯ÈÝÁ¿£¨Ä£Äâ8GÅÌ£©
 				pBuf = DBFORMATCAP;
 				if(UFI_Length.mDataLength>sizeof(DBFORMATCAP)) UFI_Length.mDataLength=sizeof(DBFORMATCAP);
 				BcswStatus=0;
@@ -294,8 +295,8 @@ void UFI_Hunding(void ){
 				mASC=0;
 			break;
 			case READ:
-				UFI_Length.mDataLength=(((UINT32)MassPara.cbw.cbwcb.buf1[7]<<8) | (UINT32)MassPara.cbw.cbwcb.buf1[8])*512;  //ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½
-				SecNum = ((UINT32)MassPara.cbw.cbwcb.buf1[2]<<24) | ((UINT32)MassPara.cbw.cbwcb.buf1[3]<<16) | ((UINT32)MassPara.cbw.cbwcb.buf1[4]<<8) | (UINT32)MassPara.cbw.cbwcb.buf1[5];//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				UFI_Length.mDataLength=(((UINT32)MassPara.cbw.cbwcb.buf1[7]<<8) | (UINT32)MassPara.cbw.cbwcb.buf1[8])*512;  //·¢ËÍ³¤¶È
+				SecNum = ((UINT32)MassPara.cbw.cbwcb.buf1[2]<<24) | ((UINT32)MassPara.cbw.cbwcb.buf1[3]<<16) | ((UINT32)MassPara.cbw.cbwcb.buf1[4]<<8) | (UINT32)MassPara.cbw.cbwcb.buf1[5];//ÆðÊ¼ÉÈÇøºÅ
 				if(SecNum==0 || SecNum==6)
 				{
 					pBuf = DBR;
@@ -365,17 +366,17 @@ void UFI_Hunding(void ){
 }
 /*******************************************************************************
 * Function Name  : mCH375UpCsw
-* Description    : ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½×´Ì¬ï¿½Ï´ï¿½
+* Description    : ÅúÁ¿Ð­Òé×´Ì¬ÉÏ´«
 * Input          : None
 * Output         : None
 * Return         : None
 *******************************************************************************/
 void mCH375UpCsw()
 {
-	unsigned char i;													//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª0
+	unsigned char i;													//Èç¹ûÊý¾ÝÎª0
 	pBuf=&MassPara.buf[0];
-	CH375CSW=0;																	//ï¿½Ï´ï¿½CSW
-	CH375BULKUP=0;														//È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+	CH375CSW=0;																	//ÉÏ´«CSW
+	CH375BULKUP=0;														//È¡ÏûÊý¾ÝÉÏ´«
 	MassPara.buf[0]=0x55;												//dCSWSignature
 	MassPara.buf[1]=0x53;
 	MassPara.buf[2]=0x42;
@@ -395,12 +396,12 @@ void mCH375UpCsw()
 		pBuf++;
 	}
 	UEP1_T_LEN = 13;
-	UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;          // ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+	UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;          // ÔÊÐíÉÏ´«
 }
 
 /*******************************************************************************
 * Function Name  : mCH375BulkOnly
-* Description    : ï¿½ï¿½ï¿½ï¿½Ð­ï¿½é´¦ï¿½ï¿½
+* Description    : ÅúÁ¿Ð­Òé´¦Àí
 * Input          : None
 * Output         : None
 * Return         : None
@@ -410,20 +411,20 @@ void mCH375BulkOnly(){
 		if(MassPara.buf[1]==0x53){
 		   if(MassPara.buf[2]==0x42){
 				if(MassPara.buf[3]==0x43){
-					UFI_Length.mdataLen[3] = *(unsigned char *)(&MassPara.cbw.dCBWDatL);             /* ï¿½ï¿½PCï¿½ï¿½ï¿½Äµï¿½ï¿½Ö½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½16Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªC51ï¿½Ä¸ï¿½ï¿½Ö½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+					UFI_Length.mdataLen[3] = *(unsigned char *)(&MassPara.cbw.dCBWDatL);             /* ½«PC»úµÄµÍ×Ö½ÚÔÚÇ°µÄ16Î»×ÖÊý¾Ý×ª»»ÎªC51µÄ¸ß×Ö½ÚÔÚÇ°µÄÊý¾Ý */
 					UFI_Length.mdataLen[2] = *( (unsigned char *)(&MassPara.cbw.dCBWDatL) + 1 );
 					UFI_Length.mdataLen[1] = *( (unsigned char *)(&MassPara.cbw.dCBWDatL) + 2 );
 					UFI_Length.mdataLen[0] = *( (unsigned char *)(&MassPara.cbw.dCBWDatL) + 3 );
 					mdCBWTag[0]=MassPara.buf[4];
 					mdCBWTag[1]=MassPara.buf[5];
 					mdCBWTag[2]=MassPara.buf[6];
-					mdCBWTag[3]=MassPara.buf[7];										     //È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½
+					mdCBWTag[3]=MassPara.buf[7];										     //È¡³öÊý¾Ý³¤¶È
 					if(UFI_Length.mDataLength){
-							CH375BULKDOWN=(MassPara.cbw.bmCBWFlags&0X80)?0:1;	             //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
+							CH375BULKDOWN=(MassPara.cbw.bmCBWFlags&0X80)?0:1;	             //ÅÐ¶ÏÊÇÉÏ´«»¹ÊÇÏÂ´«Êý¾Ý
 							CH375BULKUP=(MassPara.cbw.bmCBWFlags&0X80)?1:0;
 						}
 						CH375CSW=1;
-						UFI_Hunding();                                                       //ï¿½ï¿½ï¿½ï¿½UFIÐ­ï¿½é´¦ï¿½ï¿½
+						UFI_Hunding();                                                       //µ÷ÓÃUFIÐ­Òé´¦Àí
 			   }
 				else
 				UEP1_CTRL = UEP1_CTRL | UEP_T_RES_STALL ;
@@ -439,12 +440,12 @@ void mCH375BulkOnly(){
 }
 /*******************************************************************************
 * Function Name  : CH375bulkUpData
-* Description    : ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½ï¿½Ï´ï¿½
+* Description    : ÅúÁ¿Ð­ÒéÉÏ´«
 * Input          : None
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CH375bulkUpData(){											           //ï¿½ï¿½ï¿½Ã¶Ëµï¿½1ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½
+void CH375bulkUpData(){											           //µ÷ÓÃ¶Ëµã1ÉÏ´«Êý¾Ý
 		unsigned char len,i;
 		if(UFI_Length.mDataLength>MAX_PACKET_SIZE){
 			len=MAX_PACKET_SIZE;
@@ -463,51 +464,51 @@ void CH375bulkUpData(){											           //ï¿½ï¿½ï¿½Ã¶Ëµï¿½1ï¿½Ï´ï¿½ï¿½ï¿½ï¿
 			}
 		}
 		UEP1_T_LEN = len;
-		UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;        // ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+		UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;        // ÔÊÐíÉÏ´«
 }
 /*******************************************************************************
 * Function Name  : USB_DeviceInterrupt
-* Description    : USBÄ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* Description    : USBÄ£ÄâÉèÖÃÖÐ¶Ï´¦Àíº¯Êý
 * Input          : None
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* USBï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ê¹ï¿½Ã¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½1 */
+void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* USBÖÐ¶Ï·þÎñ³ÌÐò,Ê¹ÓÃ¼Ä´æÆ÷×é1 */
 {
     UINT8   len,length;
     static  UINT8   SetupReqCode;
 	static  UINT16 SetupLen;
     static  PUINT8  pDescr;
 	
-    if ( UIF_TRANSFER )                                                        // USBï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    if ( UIF_TRANSFER )                                                        // USB´«ÊäÍê³É
     {
-		switch ( USB_INT_ST & ( MASK_UIS_TOKEN | MASK_UIS_ENDP ) )         // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆºÍ¶Ëµï¿½ï¿½
+		switch ( USB_INT_ST & ( MASK_UIS_TOKEN | MASK_UIS_ENDP ) )         // ·ÖÎö²Ù×÷ÁîÅÆºÍ¶ËµãºÅ
 		{
-		case UIS_TOKEN_IN | 1:                                             // endpoint 1# ï¿½Ð¶Ï¶Ëµï¿½ï¿½Ï´ï¿½
-			if(CH375BULKUP) CH375bulkUpData();								//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+		case UIS_TOKEN_IN | 1:                                             // endpoint 1# ÖÐ¶Ï¶ËµãÉÏ´«
+			if(CH375BULKUP) CH375bulkUpData();								//µ÷ÓÃÊý¾ÝÉÏ´«
 			else if(CH375CSW) {
 				CH375CSW = 0;
-				mCH375UpCsw();									//ï¿½Ï´ï¿½CSW
+				mCH375UpCsw();									//ÉÏ´«CSW
 			}
 			else
-			UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;      // ï¿½ï¿½Í£ï¿½Ï´ï¿½
+			UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;      // ÔÝÍ£ÉÏ´«
 			break;
 		case UIS_TOKEN_OUT | 1:
-			if ( U_TOG_OK )                                                // ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			if ( U_TOG_OK )                                                // ²»Í¬²½µÄÊý¾Ý°ü½«¶ªÆú
 			{
 				if(CH375BULKDOWN) 
 				{							
-					//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ð´
-//					mCH375BulkDownData();				                   //ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ý½×¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+					//ÔÝÊ±²»¿ÉÐ´
+//					mCH375BulkDownData();				                   //Èç¹ûÉÏ´«Êý¾Ý½×¶ÎÔòµ÷ÓÃÊý¾ÝÉÏ´«
 				}
-				else{	 										           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ç·ï¿½
+				else{	 										           //²»ÊÇÊý¾ÝÏÂ´«ÔòÅÐ¶ÏÊÇ·ñ
 						length = USB_RX_LEN;
-						if(!length)break;								   //ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½																		
+						if(!length)break;								   //Êý¾Ý°ü³¤¶ÈÎªÁãÔòÌø³ö																		
 						for(len=0;len!=length;len++)						
-							MassPara.buf[len]=Ep1Buffer[len];	           //ï¿½ï¿½ï¿½ï¿½ï¿½Ý¶ï¿½ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+							MassPara.buf[len]=Ep1Buffer[len];	           //½«Êý¾Ý¶ÁÈëµ½»º³åÇø
 						mCH375BulkOnly();
 						if(!CH375BULKDOWN){
-							if(CH375BULKUP) CH375bulkUpData();			    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+							if(CH375BULKUP) CH375bulkUpData();			    //µ÷ÓÃÅúÁ¿Êý¾ÝÉÏ´«
 							else mCH375UpCsw();                             //test
 						}
 				}	
@@ -516,12 +517,12 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 			break;
 		case UIS_TOKEN_SETUP | 0:                                          // endpoint 0# SETUP
 			len = USB_RX_LEN;
-			if ( len == sizeof( USB_SETUP_REQ ) )                          // SETUPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			if ( len == sizeof( USB_SETUP_REQ ) )                          // SETUP°ü³¤¶È
 			{
 				SetupLen = ((UINT16)UsbSetupBuf->wLengthH<<8) | (UsbSetupBuf->wLengthL);
-				len = 0;                                                   // Ä¬ï¿½ï¿½Îªï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½0ï¿½ï¿½ï¿½ï¿½
+				len = 0;                                                   // Ä¬ÈÏÎª³É¹¦²¢ÇÒÉÏ´«0³¤¶È
 				SetupReqCode = UsbSetupBuf->bRequest;
-				if ( ( UsbSetupBuf->bRequestType & USB_REQ_TYP_MASK ) != USB_REQ_TYP_STANDARD )/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+				if ( ( UsbSetupBuf->bRequestType & USB_REQ_TYP_MASK ) != USB_REQ_TYP_STANDARD )/* ÀàÇëÇó */
 				{                                                                  
 					if(SetupReqCode == 0xFE)                               //GET MAX LUN
 					{
@@ -529,32 +530,32 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 						len = 1;
 						if ( SetupLen > len )
 						{
-							SetupLen = len;                                 // ï¿½ï¿½ï¿½ï¿½ï¿½Ü³ï¿½ï¿½ï¿½
+							SetupLen = len;                                 // ÏÞÖÆ×Ü³¤¶È
 						}
-						len = SetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : SetupLen;  // ï¿½ï¿½ï¿½Î´ï¿½ï¿½ä³¤ï¿½ï¿½
-						memcpy( Ep0Buffer, pDescr, len );                   /* ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ */
+						len = SetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : SetupLen;  // ±¾´Î´«Êä³¤¶È
+						memcpy( Ep0Buffer, pDescr, len );                   /* ¼ÓÔØÉÏ´«Êý¾Ý */
 						SetupLen -= len;
 						pDescr += len;						
 					}
 					else
 						len = 0xFF;					
 				}
-				else                                                       // ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½
+				else                                                       // ±ê×¼ÇëÇó
 				{					
-					switch( SetupReqCode )                                 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					switch( SetupReqCode )                                 // ÇëÇóÂë
 					{
 					case USB_GET_DESCRIPTOR:
 						switch( UsbSetupBuf->wValueH )
 						{
-						case 1:                                            // ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						case 1:                                            // Éè±¸ÃèÊö·û
 							pDescr = (PUINT8)( &MyDevDescr[0] );
 							len = sizeof( MyDevDescr );
 							break;
-						case 2:                                            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						case 2:                                            // ÅäÖÃÃèÊö·û
 							pDescr = (PUINT8)( &MyCfgDescr[0] );
 							len = sizeof( MyCfgDescr );
 							break;
-						case 3:                                            // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						case 3:                                            // ×Ö·û´®ÃèÊö·û
 							switch( UsbSetupBuf->wValueL )
 							{
 							case 1:
@@ -570,25 +571,25 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 								len = sizeof( MyLangDescr );
 								break;
 							default:
-								len = 0xFF;                                 // ï¿½ï¿½Ö§ï¿½Öµï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+								len = 0xFF;                                 // ²»Ö§³ÖµÄ×Ö·û´®ÃèÊö·û
 								break;
 							}
 							break;
 						default:
-							len = 0xFF;                                     // ï¿½ï¿½Ö§ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+							len = 0xFF;                                     // ²»Ö§³ÖµÄÃèÊö·ûÀàÐÍ
 							break;
 						}
 						if ( SetupLen > len )
 						{
-							SetupLen = len;                                 // ï¿½ï¿½ï¿½ï¿½ï¿½Ü³ï¿½ï¿½ï¿½
+							SetupLen = len;                                 // ÏÞÖÆ×Ü³¤¶È
 						}
-						len = SetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : SetupLen;  // ï¿½ï¿½ï¿½Î´ï¿½ï¿½ä³¤ï¿½ï¿½
-						memcpy( Ep0Buffer, pDescr, len );                   /* ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ */
+						len = SetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : SetupLen;  // ±¾´Î´«Êä³¤¶È
+						memcpy( Ep0Buffer, pDescr, len );                   /* ¼ÓÔØÉÏ´«Êý¾Ý */
 						SetupLen -= len;
 						pDescr += len;
 						break;
 					case USB_SET_ADDRESS:
-						SetupLen = UsbSetupBuf->wValueL;                    // ï¿½Ý´ï¿½USBï¿½è±¸ï¿½ï¿½Ö·
+						SetupLen = UsbSetupBuf->wValueL;                    // ÔÝ´æUSBÉè±¸µØÖ·
 						break;
 					case USB_GET_CONFIGURATION:
 						Ep0Buffer[0] = UsbConfig;
@@ -604,25 +605,25 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 					#endif												
 						break;
 					case USB_CLEAR_FEATURE:
-                        if( ( UsbSetupBuf->bRequestType & USB_REQ_RECIP_MASK ) == USB_REQ_RECIP_DEVICE )                  /* ï¿½ï¿½ï¿½ï¿½è±¸ */
+                        if( ( UsbSetupBuf->bRequestType & USB_REQ_RECIP_MASK ) == USB_REQ_RECIP_DEVICE )                  /* Çå³ýÉè±¸ */
                         {
                             if( ( ( ( UINT16 )UsbSetupBuf->wValueH << 8 ) | UsbSetupBuf->wValueL ) == 0x01 )
                             {
                                 if( MyCfgDescr[ 7 ] & 0x20 )
                                 {
-                                    /* ï¿½ï¿½ï¿½ï¿½ */
+                                    /* »½ÐÑ */
                                 }
                                 else
                                 {
-                                    len = 0xFF;                                        /* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+                                    len = 0xFF;                                        /* ²Ù×÷Ê§°Ü */
                                 }
                             }
                             else
                             {
-                                len = 0xFF;                                            /* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+                                len = 0xFF;                                            /* ²Ù×÷Ê§°Ü */
                             }
                         }						
-						else if ( ( UsbSetupBuf->bRequestType & USB_REQ_RECIP_MASK ) == USB_REQ_RECIP_ENDP )// ï¿½Ëµï¿½
+						else if ( ( UsbSetupBuf->bRequestType & USB_REQ_RECIP_MASK ) == USB_REQ_RECIP_ENDP )// ¶Ëµã
 						{
 							switch( UsbSetupBuf->wIndexL )
 							{
@@ -649,78 +650,78 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 								}
 								break;
 							default:
-								len = 0xFF;                                     // ï¿½ï¿½Ö§ï¿½ÖµÄ¶Ëµï¿½
+								len = 0xFF;                                     // ²»Ö§³ÖµÄ¶Ëµã
 								break;
 							}
 						}
 						else
 						{
-							len = 0xFF;                                         // ï¿½ï¿½ï¿½Ç¶Ëµã²»Ö§ï¿½ï¿½
+							len = 0xFF;                                         // ²»ÊÇ¶Ëµã²»Ö§³Ö
 						}
 						break;
                     case USB_SET_FEATURE:                                          /* Set Feature */
-                        if( ( UsbSetupBuf->bRequestType & 0x1F ) == USB_REQ_RECIP_DEVICE )                  /* ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ */
+                        if( ( UsbSetupBuf->bRequestType & 0x1F ) == USB_REQ_RECIP_DEVICE )                  /* ÉèÖÃÉè±¸ */
                         {
                             if( ( ( ( UINT16 )UsbSetupBuf->wValueH << 8 ) | UsbSetupBuf->wValueL ) == 0x01 )
                             {
                                 if( MyCfgDescr[ 7 ] & 0x20 )
                                 {
-                                    /* ï¿½ï¿½ï¿½ï¿½ */
+                                    /* ÐÝÃß */
 						#if DE_PRINTF
-									printf( "suspend\n" );                                                             //Ë¯ï¿½ï¿½×´Ì¬
+									printf( "suspend\n" );                                                             //Ë¯Ãß×´Ì¬
 						#endif
 									while ( XBUS_AUX & bUART0_TX )
 									{
-										;    //ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+										;    //µÈ´ý·¢ËÍÍê³É
 									}
 									SAFE_MOD = 0x55;
 									SAFE_MOD = 0xAA;
-									WAKE_CTRL = bWAK_BY_USB | bWAK_RXD0_LO;                      //USBï¿½ï¿½ï¿½ï¿½RXD0ï¿½ï¿½ï¿½Åºï¿½Ê±ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½
-									PCON |= PD;                                                                 //Ë¯ï¿½ï¿½
+									WAKE_CTRL = bWAK_BY_USB | bWAK_RXD0_LO;                      //USB»òÕßRXD0ÓÐÐÅºÅÊ±¿É±»»½ÐÑ
+									PCON |= PD;                                                                 //Ë¯Ãß
 									SAFE_MOD = 0x55;
 									SAFE_MOD = 0xAA;
 									WAKE_CTRL = 0x00;
                                 }
                                 else
                                 {
-                                    len = 0xFF;                                        /* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+                                    len = 0xFF;                                        /* ²Ù×÷Ê§°Ü */
                                 }
                             }
                             else
                             {
-                                len = 0xFF;                                            /* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+                                len = 0xFF;                                            /* ²Ù×÷Ê§°Ü */
                             }
                         }
-                        else if( ( UsbSetupBuf->bRequestType & 0x1F ) == USB_REQ_RECIP_ENDP )             /* ï¿½ï¿½ï¿½Ã¶Ëµï¿½ */
+                        else if( ( UsbSetupBuf->bRequestType & 0x1F ) == USB_REQ_RECIP_ENDP )             /* ÉèÖÃ¶Ëµã */
                         {
                             if( ( ( ( UINT16 )UsbSetupBuf->wValueH << 8 ) | UsbSetupBuf->wValueL ) == 0x00 )
                             {
                                 switch( ( ( UINT16 )UsbSetupBuf->wIndexH << 8 ) | UsbSetupBuf->wIndexL )
                                 {								
                                 case 0x82:
-                                    UEP2_CTRL = UEP2_CTRL & (~bUEP_T_TOG) | UEP_T_RES_STALL;/* ï¿½ï¿½ï¿½Ã¶Ëµï¿½2 IN STALL */
+                                    UEP2_CTRL = UEP2_CTRL & (~bUEP_T_TOG) | UEP_T_RES_STALL;/* ÉèÖÃ¶Ëµã2 IN STALL */
                                     break;
                                 case 0x02:
-                                    UEP2_CTRL = UEP2_CTRL & (~bUEP_R_TOG) | UEP_R_RES_STALL;/* ï¿½ï¿½ï¿½Ã¶Ëµï¿½2 OUT Stall */
+                                    UEP2_CTRL = UEP2_CTRL & (~bUEP_R_TOG) | UEP_R_RES_STALL;/* ÉèÖÃ¶Ëµã2 OUT Stall */
                                     break;
                                 case 0x81:
-                                    UEP1_CTRL = UEP1_CTRL & (~bUEP_T_TOG) | UEP_T_RES_STALL;/* ï¿½ï¿½ï¿½Ã¶Ëµï¿½1 IN STALL */
+                                    UEP1_CTRL = UEP1_CTRL & (~bUEP_T_TOG) | UEP_T_RES_STALL;/* ÉèÖÃ¶Ëµã1 IN STALL */
                                     break;
 								case 0x01:
-									UEP1_CTRL = UEP1_CTRL & (~bUEP_R_TOG) | UEP_R_RES_STALL;/* ï¿½ï¿½ï¿½Ã¶Ëµï¿½1 OUT Stall */
+									UEP1_CTRL = UEP1_CTRL & (~bUEP_R_TOG) | UEP_R_RES_STALL;/* ÉèÖÃ¶Ëµã1 OUT Stall */
                                 default:
-                                    len = 0xFF;                                    /* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+                                    len = 0xFF;                                    /* ²Ù×÷Ê§°Ü */
                                     break;
                                 }
                             }
                             else
                             {
-                                len = 0xFF;                                      /* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+                                len = 0xFF;                                      /* ²Ù×÷Ê§°Ü */
                             }
                         }
                         else
                         {
-                            len = 0xFF;                                          /* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+                            len = 0xFF;                                          /* ²Ù×÷Ê§°Ü */
                         }
                         break;											
 					case USB_GET_INTERFACE:
@@ -751,9 +752,9 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 						}
 						break;
 					default:
-						len = 0xFF;                                             // ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+						len = 0xFF;                                             // ²Ù×÷Ê§°Ü
 						#if DE_PRINTF
-							printf("ErrEp0ReqCode=%02X\n",(UINT16)SetupReqCode);                                                             //Ë¯ï¿½ï¿½×´Ì¬
+							printf("ErrEp0ReqCode=%02X\n",(UINT16)SetupReqCode);                                                             //Ë¯Ãß×´Ì¬
 						#endif
 						
 						break;
@@ -764,42 +765,42 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 			{
 				len = 0xFF;                                                    			
 				#if DE_PRINTF
-					printf("ErrEp0ReqSize\n");                               // SETUPï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½                                                 
+					printf("ErrEp0ReqSize\n");                               // SETUP°ü³¤¶È´íÎó                                                 
 				#endif
 			}
-			if ( len == 0xFF )                                                 // ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+			if ( len == 0xFF )                                                 // ²Ù×÷Ê§°Ü
 			{
 				SetupReqCode = 0xFF;
 				UEP0_CTRL = bUEP_R_TOG | bUEP_T_TOG | UEP_R_RES_STALL | UEP_T_RES_STALL;// STALL
 			}
-			else if ( len <= DEFAULT_ENDP0_SIZE )                                 // ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½×´Ì¬ï¿½×¶Î·ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½È°ï¿½
+			else if ( len <= DEFAULT_ENDP0_SIZE )                                 // ÉÏ´«Êý¾Ý»òÕß×´Ì¬½×¶Î·µ»Ø0³¤¶È°ü
 			{
 				UEP0_T_LEN = len;
-				UEP0_CTRL = bUEP_R_TOG | bUEP_T_TOG | UEP_R_RES_ACK | UEP_T_RES_ACK;// Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½DATA1
+				UEP0_CTRL = bUEP_R_TOG | bUEP_T_TOG | UEP_R_RES_ACK | UEP_T_RES_ACK;// Ä¬ÈÏÊý¾Ý°üÊÇDATA1
 			}
-			else                                                               // ï¿½Â´ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½
+			else                                                               // ÏÂ´«Êý¾Ý»òÆäËü
 			{
-				UEP0_T_LEN = 0;                                                // ï¿½ï¿½È»ï¿½ï¿½Î´ï¿½ï¿½×´Ì¬ï¿½×¶Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Ô¤ï¿½ï¿½ï¿½Ï´ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½×¶ï¿½
-				UEP0_CTRL = bUEP_R_TOG | bUEP_T_TOG | UEP_R_RES_ACK | UEP_T_RES_ACK;// Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½DATA1
+				UEP0_T_LEN = 0;                                                // ËäÈ»ÉÐÎ´µ½×´Ì¬½×¶Î£¬µ«ÊÇÌáÇ°Ô¤ÖÃÉÏ´«0³¤¶ÈÊý¾Ý°üÒÔ·ÀÖ÷»úÌáÇ°½øÈë×´Ì¬½×¶Î
+				UEP0_CTRL = bUEP_R_TOG | bUEP_T_TOG | UEP_R_RES_ACK | UEP_T_RES_ACK;// Ä¬ÈÏÊý¾Ý°üÊÇDATA1
 			}
 			break;
 		case UIS_TOKEN_IN | 0:                                                 // endpoint 0# IN
 			switch( SetupReqCode )
 			{
 			case USB_GET_DESCRIPTOR:
-				len = SetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : SetupLen; // ï¿½ï¿½ï¿½Î´ï¿½ï¿½ä³¤ï¿½ï¿½
-				memcpy( Ep0Buffer, pDescr, len );                               /* ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ */
+				len = SetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : SetupLen; // ±¾´Î´«Êä³¤¶È
+				memcpy( Ep0Buffer, pDescr, len );                               /* ¼ÓÔØÉÏ´«Êý¾Ý */
 				SetupLen -= len;
 				pDescr += len;
 				UEP0_T_LEN = len;
-				UEP0_CTRL ^= bUEP_T_TOG;                                        // ï¿½ï¿½×ª
+				UEP0_CTRL ^= bUEP_T_TOG;                                        // ·­×ª
 				break;
 			case USB_SET_ADDRESS:
 				USB_DEV_AD = USB_DEV_AD & bUDA_GP_BIT | SetupLen;
 				UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;
 				break;
 			default:
-				UEP0_T_LEN = 0;                                                 // ×´Ì¬ï¿½×¶ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï»ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½Ï´ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½
+				UEP0_T_LEN = 0;                                                 // ×´Ì¬½×¶ÎÍê³ÉÖÐ¶Ï»òÕßÊÇÇ¿ÖÆÉÏ´«0³¤¶ÈÊý¾Ý°ü½áÊø¿ØÖÆ´«Êä
 				UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;
 				break;
 			}
@@ -807,7 +808,7 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 		case UIS_TOKEN_OUT | 0:                                                 // endpoint 0# OUT
 			UEP0_T_LEN = 0;
 			UEP0_CTRL ^= bUEP_R_TOG;
-//			UEP0_CTRL |= UEP_R_RES_ACK | UEP_T_RES_NAK;                      // ×¼ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½
+//			UEP0_CTRL |= UEP_R_RES_ACK | UEP_T_RES_NAK;                      // ×¼±¸ÏÂÒ»¿ØÖÆ´«Êä
 			break;
 		default:
 			#if DE_PRINTF
@@ -815,33 +816,33 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
 			#endif			
 			break;
 		}
-        UIF_TRANSFER = 0;                                                           // ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
+        UIF_TRANSFER = 0;                                                           // ÇåÖÐ¶Ï±êÖ¾
     }
-    else if ( UIF_BUS_RST )                                                         // USBï¿½ï¿½ï¿½ß¸ï¿½Î»
+    else if ( UIF_BUS_RST )                                                         // USB×ÜÏß¸´Î»
     {
 #if DE_PRINTF
-            printf( "reset\n" );                                                             //Ë¯ï¿½ï¿½×´Ì¬
+            printf( "reset\n" );                                                             //Ë¯Ãß×´Ì¬
 #endif	
         UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;
         UEP1_CTRL = bUEP_AUTO_TOG | UEP_R_RES_ACK | UEP_T_RES_NAK;
         USB_DEV_AD = 0x00;
         UIF_SUSPEND = 0;
         UIF_TRANSFER = 0;
-        UIF_BUS_RST = 0;                                                            // ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
+        UIF_BUS_RST = 0;                                                            // ÇåÖÐ¶Ï±êÖ¾
     }
-    else if ( UIF_SUSPEND )                                                         // USBï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    else if ( UIF_SUSPEND )                                                         // USB×ÜÏß¹ÒÆð/»½ÐÑÍê³É
     {
         UIF_SUSPEND = 0;
-        if ( USB_MIS_ST & bUMS_SUSPEND )                                            // ï¿½ï¿½ï¿½ï¿½
+        if ( USB_MIS_ST & bUMS_SUSPEND )                                            // ¹ÒÆð
         {
 #if DE_PRINTF
-             printf( "Suspend\n" );                                                  // Ë¯ï¿½ï¿½×´Ì¬
+             printf( "Suspend\n" );                                                  // Ë¯Ãß×´Ì¬
 #endif                                                   
-            while ( XBUS_AUX & bUART0_TX );                                         // ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            while ( XBUS_AUX & bUART0_TX );                                         // µÈ´ý·¢ËÍÍê³É
             SAFE_MOD = 0x55;
             SAFE_MOD = 0xAA;
-            WAKE_CTRL = bWAK_BY_USB | bWAK_RXD0_LO;                                 // USBï¿½ï¿½ï¿½ï¿½RXD0ï¿½ï¿½ï¿½Åºï¿½Ê±ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½
-            PCON |= PD;                                                             // Ë¯ï¿½ï¿½
+            WAKE_CTRL = bWAK_BY_USB | bWAK_RXD0_LO;                                 // USB»òÕßRXD0ÓÐÐÅºÅÊ±¿É±»»½ÐÑ
+            PCON |= PD;                                                             // Ë¯Ãß
             SAFE_MOD = 0x55;
             SAFE_MOD = 0xAA;
             WAKE_CTRL = 0x00;
@@ -849,30 +850,30 @@ void USB_DeviceInterrupt( void ) interrupt INT_NO_USB  using 1             /* US
         else                                                                        
         {
 #if DE_PRINTF
-            printf( "Awake\n" );                                                   // ï¿½ï¿½ï¿½ï¿½
+            printf( "Awake\n" );                                                   // »½ÐÑ
 #endif    
         }
     }
     else 
-    {                                                                               // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ü·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    {                                                                               // ÒâÍâµÄÖÐ¶Ï,²»¿ÉÄÜ·¢ÉúµÄÇé¿ö
 #if DE_PRINTF
         printf("Unknown USB_INT_FG:0X%02x\n",(UINT16)USB_INT_FG);                                                
 #endif   
         
-        USB_INT_FG = 0xFF;                                                          // ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
+        USB_INT_FG = 0xFF;                                                          // ÇåÖÐ¶Ï±êÖ¾
     }
 	
 }
 
 void main()
 {
-    CfgFsys( );                                                           //CH559Ê±ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    mDelaymS(5);                                                          //ï¿½Þ¸ï¿½ï¿½ï¿½Æµï¿½È´ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¶ï¿½,ï¿½Ø¼ï¿½	
-    mInitSTDIO( );                                                        //ï¿½ï¿½ï¿½ï¿½0,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½	
+    CfgFsys( );                                                           //CH559Ê±ÖÓÑ¡ÔñÅäÖÃ
+    mDelaymS(5);                                                          //ÐÞ¸ÄÖ÷ÆµµÈ´ýÄÚ²¿¾§ÕñÎÈ¶¨,±Ø¼Ó	
+    mInitSTDIO( );                                                        //´®¿Ú0,¿ÉÒÔÓÃÓÚµ÷ÊÔ	
 #if DE_PRINTF
     printf("start ...\n");
 #endif
-	InitUSB_Device();                                                     //ï¿½è±¸Ä£Ê½ï¿½ï¿½Ê¼ï¿½ï¿½	
+	InitUSB_Device();                                                     //Éè±¸Ä£Ê½³õÊ¼»¯	
 	while(1)
 	{
 		
