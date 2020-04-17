@@ -3,9 +3,8 @@
 [![sites](http://182.61.61.133/link/resources/SoC.png)](https://stop.stops.top) 
 
 #### [Vendor](https://github.com/sochub/Vendor)：[WCH](https://github.com/sochub/WCH)
-#### [Cortex](https://github.com/sochub/Cortex)：[E8051](https://github.com/sochub/8051)
+#### [Core](https://github.com/sochub/8051)：[E8051](https://github.com/sochub/8051)
 #### [Level](https://github.com/sochub/Level)：6/24MHz 
-
 
 ### [CH554简介](https://github.com/sochub/CH554/wiki)
 
@@ -30,7 +29,7 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 
 #### [外部资源](https://github.com/sochub)
 
-* [OS-Q H05](https://github.com/OS-Q/H02)
+* [OS-Q H05](https://github.com/OS-Q/H05)
 * [编译器SDCC](https://github.com/sochub/sdcc)
 
 #### [参考项目](https://github.com/sochub)
