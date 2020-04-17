@@ -27,10 +27,17 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 
 * [参考文档](docs/)
 * [参考资源](src/)
+
 #### [外部资源](https://github.com/sochub)
 
-* [编译器SDCC](https://github.com/sochub/sdcc)
 * [OS-Q H05](https://github.com/OS-Q/H02)
+* [编译器SDCC](https://github.com/sochub/sdcc)
+
+#### [参考项目](https://github.com/sochub)
+
+* [ch554_sdcc](https://github.com/Blinkinlabs/ch554_sdcc)
+* [CH55x_USB_CompositeDevice](https://github.com/rikka0w0/CH55x_USB_CompositeDevice)
+
 
 ### [选型建议](https://github.com/sochub)
 
