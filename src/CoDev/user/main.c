@@ -44,7 +44,7 @@ void main( void )
         }
         else
         {
-            if(TKEY_CTRL&bTKC_IF)           //wait query finsh,max 2ms ��ȡ��ֵ��׼ֵ�����������
+            if(TKEY_CTRL&bTKC_IF)           //wait query finsh,max 2ms 
             {							
             TouchKeyButton = TKEY_DAT;      //	
 #ifdef DE_PRINTF
