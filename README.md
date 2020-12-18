@@ -20,23 +20,26 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 #### 关键特性
 
 * 5V->3.3V LDO
+* 128B DataFlash
+* 内置2KB BootLoader，支持USB和串口ISP
 * Type-C主从检测
-* USB全速主从模式
-* UART x 2 + SPI
-* 性价比小封装(TSSOP20/SOP16/MSOP10/QFN16)
+* USB全速主/从模式
+* UART x 2 + SPI(M/S)
+* 小封装(TSSOP20/SOP16/MSOP10/QFN16)
 
 ### [资源收录](https://github.com/SoCXin)
 
 * [参考文档](docs/)
 * [参考资源](src/)
 * [参考工程](project/)
-
-#### [明星项目](https://github.com/SoCXin)
-
-* [ch554_sdcc](https://github.com/Blinkinlabs/ch554_sdcc)
-* [CH55x_USB_CompositeDevice](https://github.com/rikka0w0/CH55x_USB_CompositeDevice)
+* [下载工具](http://www.wch.cn/downloads/WCHISPTool_Setup_exe.html)
 
 ### [选型建议](https://github.com/SoCXin)
 
-[CH554](https://github.com/SoCXin/CH554)是一款具备想象力的产品，在开源社区拥有不错的声望。
-###  [SoC芯平台](http://www.SoC.Xin)
+[CH554](https://github.com/SoCXin/CH554)是一款具备想象力的lowpin产品，在开源社区拥有不错的声望，该产品同族包括：
+
+* [CH554](http://www.wch.cn/products/CH554.html) 包括4种封装型号(TSSOP20/SOP16/MSOP10/QFN16)
+* [CH552](http://www.wch.cn/products/CH552.html) 不支持USB-HOST主机模式
+* [CH551](http://www.wch.cn/products/CH551.html) 在CH552的基础上，ROM降为10K，片内xRAM为512字节，异步串口仅提供UART0，仅SOP16封装，去掉ADC和USB type-C功能。
+
+###  [www.SoC.xin(芯)](http://www.SoC.Xin)
