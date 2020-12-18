@@ -3,13 +3,20 @@
     "series":["CH554","CH552","CH551"],
     "type":"MCU",
     "Core":"MCS51",
-    "Freq":"24MHz",
+    "Freq":24,
+    "Level":1,
+    "price":[1,4],
     "description":"WCH 1T 8051 MCU",
-    "peripheral": ["ADC","USB","UART","SPI","LDO","PWM"],
+    "peripheral": ["TIM","ADC","USB","UART","SPI","LDO","PWM"],
     "package":["QFN16","MSOP10","TSSOP20","SOP16"],
     "SRAM":1,
     "Flash":16,
     "DATA":128,
+    "GPIO":[7,17],
+    "TIM": {
+        "resolution":[16,16,16],
+        "rate": 1024
+    },
     "UART": {
         "num": 2,
         "FIFO": 16,
@@ -21,10 +28,6 @@
         "channel": 4,
         "resolution": 8,
         "rate": 2400
-    },
-    "TIM": {
-        "resolution":[16,16,16],
-        "rate": 1024
     },
     "USB": {
         "num": 1,
@@ -44,7 +47,6 @@
     },
     "upload": {
         "ISP": true,
-        "IAP": true,
         "SWD": true,
         "speed": 115200
     },
