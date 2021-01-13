@@ -3,9 +3,8 @@
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
 #### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](http://www.wch.cn/)
-#### [Core](https://github.com/SoCXin/8051)：[E8051](https://github.com/SoCXin/8051)
+#### [Core](https://github.com/SoCXin/8051)：[8051](https://github.com/SoCXin/8051)
 #### [Level](https://github.com/SoCXin/Level)：24MHz
-
 
 ### [CH554简介](https://github.com/SoCXin/CH554/wiki)
 
@@ -32,7 +31,6 @@ CH554提供6通道电容检测模块，互电容方式支持最多15个触摸按
 * [参考文档](docs/)
 * [参考资源](src/)
 * [参考工程](project/)
-* [下载工具](http://www.wch.cn/downloads/WCHISPTool_Setup_exe.html)
 
 ### [选型建议](https://github.com/SoCXin)
 

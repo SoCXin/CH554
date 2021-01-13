@@ -1,10 +1,7 @@
 {
+    "type":"MCU",
     "name":"CH554",
     "series":["CH554","CH552","CH551"],
-    "type":"MCU",
-    "Core":"MCS51",
-    "Freq":24,
-    "Level":1,
     "price":[1,4],
     "description":"WCH 1T 8051 MCU",
     "peripheral": ["TIM","ADC","USB","UART","SPI","LDO","PWM"],
@@ -12,16 +9,38 @@
     "SRAM":1,
     "Flash":16,
     "DATA":128,
-    "GPIO":[7,17],
+    "manufacturer": {
+        "vendor":"WCH",
+        "homepage": "http://www.wch.cn/products/CH554.html"
+    },
+    "url":"http://www.SoC.xin/CH554",
+    "repo":"https://github.com/SoCXin/CH554",
+    "version":"1.0.0",
+    "Core": {
+        "num": 1,
+        "architecture":"MCS51",
+        "Freq":[8,24]
+    },
+    "UART": {
+        "mark": ["UART1","UART2"],
+        "BIT":[5,6,7,8,9],
+        "ISO7816":true,
+        "IrDA":true,
+        "LIN":true,
+        "FIFO": 16,
+        "BPS": [48,3000000]
+    },
     "TIM": {
         "resolution":[16,16,16],
         "rate": 1024
     },
-    "UART": {
-        "num": 2,
-        "FIFO": 16,
-        "ISO7816": 1,
-        "more":["BUAD","LIN","IrDA"]
+    "CLK": {
+        "HSI": [24000],
+        "LSI": [32],
+        "PLL": [16000,96000],
+        "DIV": [1,128],
+        "SYS": [187,24000],
+        "accuracy": 0.02
     },
     "ADC": {
         "num": 1,
@@ -45,14 +64,13 @@
         "resolution": 8,
         "rate": 256
     },
+    "EMC": {
+        "EFT": 2000,
+        "ESD": 4000
+    },
     "upload": {
         "ISP": true,
         "SWD": true,
         "speed": 115200
-    },
-    "vendor":"WCH",
-    "url":"http://www.SoC.xin/CH554",
-    "repo":"https://github.com/SoCXin/CH554",
-    "homepage": "http://www.wch.cn/products/CH554.html",
-    "version":"1.0.0"
+    }
 }
