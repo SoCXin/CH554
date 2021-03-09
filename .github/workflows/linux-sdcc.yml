@@ -1,0 +1,31 @@
+name: ubuntu
+
+on:
+  push:
+    branches:
+      - master
+      - github_actions
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - master
+      - github_actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+
+    - name: Download SDCC
+      run: |
+        wget https://netactuate.dl.sourceforge.net/project/sdcc/sdcc-linux-amd64/4.1.0/sdcc-4.1.0-rc1-amd64-unknown-linux2.5.tar.bz2
+        tar -xf sdcc-4.1.0-rc1-amd64-unknown-linux2.5.tar.bz2
+        echo `pwd`/sdcc/bin >> $GITHUB_PATH
+
+    - name: Build examples
+      run: make
+      working-directory: examples

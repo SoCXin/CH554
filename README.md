@@ -2,6 +2,8 @@
 
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
+[![Build Status](https://github.com/SoCXin/CH554/workflows/ubuntu/badge.svg)](https://github.com/SoCXin/CH554/actions/workflows/ubuntu.yml)
+
 #### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](http://www.wch.cn/)
 #### [Core](https://github.com/SoCXin/8051)：[8051](https://github.com/SoCXin/8051)
 #### [Level](https://github.com/SoCXin/Level)：24MHz
