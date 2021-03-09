@@ -22,15 +22,14 @@ CH554提供丰富的接口资源，包括ADC模数转换、3组定时器和信�
 * 128B DataFlash
 * 内置24MHz时钟源和PLL
 * 内置2KB BootLoader，支持USB和串口ISP
-* Type-C主从检测
-* USB全速主/从模式
+* USB HOST
 * UART x 2 + SPI(M/S)
 * 小封装(TSSOP20/SOP16/MSOP10/QFN16)
 
 ### [资源收录](https://github.com/SoCXin)
 
 * [参考文档](docs/)
-* [参考资源](src/)
+* [硬件资源](hardware/)
 * [参考工程](project/)
 
 ### [选型建议](https://github.com/SoCXin)

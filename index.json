@@ -3,7 +3,7 @@
     "name":"CH554",
     "series":["CH554T","CH554E","CH554G","CH554P"],
     "compatible":["CH552","CH551"],
-    "price":[1,4],
+    "price":[3.5,4.5],
     "description":"WCH 1T 8051 MCU",
     "peripheral": ["TIM","ADC","USB","UART","SPI","LDO","PWM"],
     "package":["MSOP10","QFN16","SOP16","TSSOP20"],
