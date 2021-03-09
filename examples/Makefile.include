@@ -41,11 +41,11 @@ $(TARGET).ihx: $(RELS)
 
 $(TARGET).hex: $(TARGET).ihx
 	$(PACK_HEX) $(TARGET).ihx > $(TARGET).hex
-	cp $(TARGET).hex ../project/build/
+	cp $(TARGET).hex ../../project/build/
 
 $(TARGET).bin: $(TARGET).ihx
 	$(OBJCOPY) -I ihex -O binary $(TARGET).ihx $(TARGET).bin
-	cp $(TARGET).bin ../project/build/
+	cp $(TARGET).bin ../../project/build/
 
 flash: $(TARGET).bin pre-flash
 	$(WCHISP) $(TARGET).bin
