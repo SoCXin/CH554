@@ -1,4 +1,4 @@
-name: ubuntu (SDCC 4.0.0)
+name: ubuntu
 
 on:
   push:
