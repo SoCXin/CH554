@@ -1,24 +1,25 @@
 {
     "type":"MCU",
     "name":"CH554",
-    "series":["CH554","CH552","CH551"],
+    "series":["CH554T","CH554E","CH554G","CH554P"],
+    "compatible":["CH552","CH551"],
     "price":[1,4],
     "description":"WCH 1T 8051 MCU",
     "peripheral": ["TIM","ADC","USB","UART","SPI","LDO","PWM"],
-    "package":["QFN16","MSOP10","TSSOP20","SOP16"],
-    "SRAM":1,
-    "Flash":16,
-    "DATA":128,
+    "package":["MSOP10","QFN16","SOP16","TSSOP20"],
+    "RAM":[1,1],
+    "ROM":[16,16],
+    "DATA":[128,128],
     "manufacturer": {
         "vendor":"WCH",
         "homepage": "http://www.wch.cn/products/CH554.html"
     },
     "url":"http://www.SoC.xin/CH554",
     "repo":"https://github.com/SoCXin/CH554",
-    "version":"1.0.0",
+    "version":"1.7.0",
     "Core": {
         "num": 1,
-        "architecture":"MCS51",
+        "architecture":"8051",
         "Freq":[8,24]
     },
     "UART": {

@@ -4,16 +4,19 @@
     "package":["TSSOP20","SOP16","QFN16","MSOP10"],
     "MSOP10": {
         "name":"CH554E",
+        "price":2.3,
         "peripheral": ["ADC","TIM","UART1","UART2","I2C","SPI","PWM"],
         "GPIO":7
     },
     "QFN16": {
         "name":"CH554P",
+        "price":2.3,
         "peripheral": ["ADC","TIM","UART1","UART2","I2C","SPI","PWM"],
         "GPIO":13
     },
     "TSSOP20": {
         "name":"CH554T",
+        "price":2.3,
         "peripheral": ["ADC","TIM","UART1","UART2","I2C","SPI","PWM"],
         "GPIO":18
     }
