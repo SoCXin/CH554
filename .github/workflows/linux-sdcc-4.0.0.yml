@@ -1,4 +1,4 @@
-name: ubuntu
+name: SDCC_4.0.0
 
 on:
   push:

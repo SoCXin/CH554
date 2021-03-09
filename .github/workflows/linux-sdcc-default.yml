@@ -1,4 +1,4 @@
-name: ubuntu (SDCC default)
+name: SDCC_default
 
 on:
   push:

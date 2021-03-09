@@ -2,7 +2,9 @@
 
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
-[![Build Status](https://github.com/SoCXin/CH554/workflows/ubuntu/badge.svg)](https://github.com/SoCXin/CH554/actions/workflows/ubuntu.yml)
+[![Build Status](https://github.com/SoCXin/CH554/workflows/SDCC_4.0.0/badge.svg)](https://github.com/SoCXin/CH554/actions)
+[![Build Status](https://github.com/SoCXin/CH554/workflows/SDCC_default/badge.svg)](https://github.com/SoCXin/CH554/actions)
+[![Build Status](https://github.com/SoCXin/CH554/workflows/SDCC_4.1.0/badge.svg)](https://github.com/SoCXin/CH554/actions)
 
 #### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](http://www.wch.cn/)
 #### [Core](https://github.com/SoCXin/8051)：[8051](https://github.com/SoCXin/8051)

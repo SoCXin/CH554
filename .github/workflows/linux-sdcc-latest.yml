@@ -1,4 +1,4 @@
-name: ubuntu (SDCC latest)
+name: SDCC_4.1.0
 
 on:
   push:
@@ -22,8 +22,8 @@ jobs:
 
     - name: Download SDCC
       run: |
-        wget https://netactuate.dl.sourceforge.net/project/sdcc/sdcc-linux-amd64/4.1.0/sdcc-4.1.0-rc1-amd64-unknown-linux2.5.tar.bz2
-        tar -xf sdcc-4.1.0-rc1-amd64-unknown-linux2.5.tar.bz2
+        wget https://jaist.dl.sourceforge.net/project/sdcc/sdcc-linux-amd64/4.1.0/sdcc-4.1.0-amd64-unknown-linux2.5.tar.bz2
+        tar -xf sdcc-4.1.0-amd64-unknown-linux2.5.tar.bz2
         echo `pwd`/sdcc/bin >> $GITHUB_PATH
 
     - name: Build examples
