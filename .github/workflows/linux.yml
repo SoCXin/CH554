@@ -1,4 +1,4 @@
-name: ubuntu (SDCC latest)
+name: ubuntu (SDCC default)
 
 on:
   push:
@@ -20,11 +20,8 @@ jobs:
     - name: Check out
       uses: actions/checkout@v2
 
-    - name: Download SDCC
-      run: |
-        wget https://netactuate.dl.sourceforge.net/project/sdcc/sdcc-linux-amd64/4.1.0/sdcc-4.1.0-rc1-amd64-unknown-linux2.5.tar.bz2
-        tar -xf sdcc-4.1.0-rc1-amd64-unknown-linux2.5.tar.bz2
-        echo `pwd`/sdcc/bin >> $GITHUB_PATH
+    - name: Install SDCC
+      run: sudo apt-get install -y sdcc
 
     - name: Build examples
       run: make
