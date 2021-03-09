@@ -40,11 +40,11 @@ $(TARGET).ihx: $(RELS)
 	$(CC) $(notdir $(RELS)) $(LFLAGS) -o $(TARGET).ihx
 
 $(TARGET).hex: $(TARGET).ihx
-	$(PACK_HEX) $(TARGET).ihx > $(TARGET).hex
+	$(PACK_HEX) $(TARGET).ihx > ../build/$(TARGET).hex
 
 $(TARGET).bin: $(TARGET).ihx
-	$(OBJCOPY) -I ihex -O binary $(TARGET).ihx $(TARGET).bin
-	
+	$(OBJCOPY) -I ihex -O binary $(TARGET).ihx ../build/$(TARGET).bin
+
 flash: $(TARGET).bin pre-flash
 	$(WCHISP) $(TARGET).bin
 
