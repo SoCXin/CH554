@@ -29,7 +29,7 @@ jobs:
       working-directory: src/examples
       run: make
 
-    # - uses: actions/upload-artifact@v2
-    #   with:
-    #     name: sdcc-build
-    #     path: src/build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: sdcc-examples
+        path: src/examples/build
