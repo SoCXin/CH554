@@ -31,15 +31,23 @@ CH554提供丰富的接口资源，包括ADC模数转换、3组定时器和信�
 
 ### [选型建议](https://github.com/SoCXin)
 
-[CH554](https://github.com/SoCXin/CH554)是一款广泛应用的低成本USB MCU，应用于各种简单外设，软硬件兼容的同厂商产品还包括：
+[CH554](https://github.com/SoCXin/CH554)是一款广泛应用的低成本USB HOST MCU，降配版本[CH552](https://github.com/SoCXin/CH552)具有更高性价比，应用于各种简单USB通信外设，拥有大量开源的基础组件
 
-* [CH552](http://www.wch.cn/products/CH552.html) 在[CH554](http://www.wch.cn/products/CH554.html)的基础上，不支持USB-HOST主机模式
-* [CH551](http://www.wch.cn/products/CH551.html) 在[CH552](http://www.wch.cn/products/CH552.html)的基础上，ROM降为10K，xRAM为512字节，串口仅UART0，封装仅SOP16，去掉了ADC和USB type-C功能。
+* [CH552](http://www.wch.cn/products/CH552.html)不支持USB-HOST主机模式
+* [CH551](http://www.wch.cn/products/CH551.html)ROM降为10K，xRAM为512字节，串口仅UART0，封装仅SOP16，去掉了ADC和USB type-C功能。
+
 
 * 小封装(TSSOP20/SOP16/QFN16/MSOP10)
 
 #### 相关开发板
 
 [![sites](docs/B.png)](https://item.taobao.com/item.htm?spm=a230r.1.14.160.1b402171ANBDsc&id=598357002103&ns=1&abbucket=18#detail)
+
+#### 完成度较高的开源项目
+
+* [ch55xduino](https://github.com/DeqingSun/ch55xduino) 类arduino框架
+* [ch554_sdcc](https://github.com/Blinkinlabs/ch554_sdcc) 基于SDCC的工程
+* [ch55xtool](https://github.com/MarsTechHAN/ch552tool) 固件下载工具
+
 
 ### [探索芯世界 www.SoC.xin](http://www.SoC.Xin)
