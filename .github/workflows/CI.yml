@@ -27,10 +27,10 @@ jobs:
         echo `pwd`/sdcc-4.0.0/bin >> $GITHUB_PATH
 
     - name: Build examples
+      working-directory: src/examples
       run: make
-      working-directory: examples
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ubuntu-sdcc-build
-        path: project/build
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: sdcc-build
+    #     path: src/build
