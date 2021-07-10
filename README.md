@@ -2,7 +2,7 @@
 
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
-[![Build Status](https://github.com/SoCXin/CH554/workflows/src/badge.svg)](https://github.com/SoCXin/CH554/actions/workflows/src.yml)
+[![Build Status](https://github.com/SoCXin/CH554/workflows/CI/badge.svg)](https://github.com/SoCXin/CH554/actions/workflows/CI.yml)
 
 * [WCH](http://www.wch.cn/): [8051](https://github.com/SoCXin/8051)
 * [L1R1](https://github.com/SoCXin/Level): 24 MHz

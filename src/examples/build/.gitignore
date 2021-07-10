@@ -1,0 +1,13 @@
+# SDCC
+*.adb
+*.hex
+*.lst
+*.map
+*.asm
+*.ihx
+*.lk
+*.mem
+*.rel
+*.rst
+*.sym
+*.bin
