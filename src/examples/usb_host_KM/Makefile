@@ -9,9 +9,9 @@ XRAM_LOC = 0x080
 C_FILES = \
 	UsbHostHub_KM.c \
 	usbhost.c \
-	../../include/debug.c
+	../include/debug.c
 
 pre-flash:
-	
+
 
 include ../Makefile.include

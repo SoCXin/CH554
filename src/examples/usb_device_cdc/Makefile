@@ -12,9 +12,9 @@ XRAM_LOC = 0x0100
 
 C_FILES = \
 	main.c \
-	../../include/debug.c
+	../include/debug.c
 
 pre-flash:
-	
+
 
 include ../Makefile.include

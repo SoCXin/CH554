@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-#include "../../include/ch554.h"
+#include "../include/ch554.h"
 #include "bitbang.h"
 
 #define LED_PIN 5

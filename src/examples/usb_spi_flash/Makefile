@@ -14,12 +14,12 @@ C_FILES = \
 	main.c \
 	usb_spi_flash.c \
 	spi_flash.c \
-	../../include/debug.c \
-	../../include/spi.c
+	../include/debug.c \
+	../include/spi.c
 
 pre-flash:
 	@-echo "E" > /dev/ttyACM0 #使其跳转到Bootloader
 	sleep 1
-	
+
 
 include ../Makefile.include

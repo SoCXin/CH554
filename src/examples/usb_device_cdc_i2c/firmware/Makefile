@@ -12,7 +12,7 @@ XRAM_LOC = 0x0100
 
 C_FILES = \
 	main.c \
-	../../../include/debug.c \
+	../../include/debug.c \
 	i2c.c
 
 pre-flash:
@@ -21,4 +21,4 @@ pre-flash:
 
 include ../../Makefile.include
 
-CFLAGS += -I ../../../include
+CFLAGS += -I ../../include

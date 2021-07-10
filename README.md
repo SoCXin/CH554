@@ -4,8 +4,8 @@
 
 [![Build Status](https://github.com/SoCXin/CH554/workflows/src/badge.svg)](https://github.com/SoCXin/CH554/actions/workflows/src.yml)
 
-* [WCH](http://www.wch.cn/)：[8051](https://github.com/SoCXin/8051)
-* [L1R1](https://github.com/SoCXin/Level)：24 MHz
+* [WCH](http://www.wch.cn/): [8051](https://github.com/SoCXin/8051)
+* [L1R1](https://github.com/SoCXin/Level): 24 MHz
 
 
 ### [简介](https://github.com/SoCXin/CH554/wiki)
@@ -19,7 +19,7 @@ CH554提供丰富的接口资源，包括ADC模数转换、3组定时器和信�
 #### 关键特性
 
 * USB HOST
-* 集成 5V->3.3V LDO
+* 5V->3.3V LDO
 * 128B DataFlash
 * 内置2KB BootLoader，支持USB和串口ISP
 
@@ -36,7 +36,7 @@ CH554提供丰富的接口资源，包括ADC模数转换、3组定时器和信�
 * [CH552](http://www.wch.cn/products/CH552.html) 在[CH554](http://www.wch.cn/products/CH554.html)的基础上，不支持USB-HOST主机模式
 * [CH551](http://www.wch.cn/products/CH551.html) 在[CH552](http://www.wch.cn/products/CH552.html)的基础上，ROM降为10K，xRAM为512字节，串口仅UART0，封装仅SOP16，去掉了ADC和USB type-C功能。
 
-* 小封装(TSSOP20/SOP16/MSOP10/QFN16)
+* 小封装(TSSOP20/SOP16/QFN16/MSOP10)
 
 #### 相关开发板
 

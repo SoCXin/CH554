@@ -12,11 +12,11 @@ XRAM_LOC = 0x0100
 
 C_FILES = \
 	main.c \
-	../../include/debug.c
+	../include/debug.c
 
 #EXTRA_FLAGS += -DDE_PRINTF
 
 pre-flash:
-	
+
 
 include ../Makefile.include
