@@ -1,4 +1,4 @@
-name: SDCC_4.1.0
+name: CI
 
 on:
   push:
@@ -22,10 +22,15 @@ jobs:
 
     - name: Download SDCC
       run: |
-        wget https://jaist.dl.sourceforge.net/project/sdcc/sdcc-linux-amd64/4.1.0/sdcc-4.1.0-amd64-unknown-linux2.5.tar.bz2
-        tar -xf sdcc-4.1.0-amd64-unknown-linux2.5.tar.bz2
-        echo `pwd`/sdcc/bin >> $GITHUB_PATH
+        wget https://sourceforge.net/projects/sdcc/files/sdcc-linux-amd64/4.0.0/sdcc-4.0.0-amd64-unknown-linux2.5.tar.bz2
+        tar -xf sdcc-4.0.0-amd64-unknown-linux2.5.tar.bz2
+        echo `pwd`/sdcc-4.0.0/bin >> $GITHUB_PATH
 
     - name: Build examples
       run: make
       working-directory: examples
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ubuntu-sdcc-build
+        path: project/build

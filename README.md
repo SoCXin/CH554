@@ -28,8 +28,8 @@ CH554提供丰富的接口资源，包括ADC模数转换、3组定时器和信�
 
 ### [资源收录](https://github.com/SoCXin)
 
+* [参考资源](src/)
 * [参考文档](docs/)
-* [硬件资源](hardware/)
 * [参考工程](project/)
 
 ### [选型建议](https://github.com/SoCXin)
@@ -38,5 +38,8 @@ CH554提供丰富的接口资源，包括ADC模数转换、3组定时器和信�
 
 * [CH552](http://www.wch.cn/products/CH552.html) 在[CH554](http://www.wch.cn/products/CH554.html)的基础上，不支持USB-HOST主机模式
 * [CH551](http://www.wch.cn/products/CH551.html) 在[CH552](http://www.wch.cn/products/CH552.html)的基础上，ROM降为10K，xRAM为512字节，串口仅UART0，封装仅SOP16，去掉了ADC和USB type-C功能。
+#### 相关开发板
 
-###  [芯云 www.SoC.Xin](http://www.SoC.Xin)
+[![sites](docs/B.png)](https://item.taobao.com/item.htm?spm=a230r.1.14.160.1b402171ANBDsc&id=598357002103&ns=1&abbucket=18#detail)
+
+### [探索芯世界 www.SoC.xin](http://www.SoC.Xin)
