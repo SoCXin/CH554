@@ -13,7 +13,6 @@
 
 # SDCC
 *.adb
-*.hex
 *.lst
 *.map
 *.asm
