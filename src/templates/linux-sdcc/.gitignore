@@ -1,0 +1,27 @@
+# General temp files
+*.DS_Store
+*.swp
+*.lck
+*.autosave
+*~
+
+# GNU/Make
+*/*.s
+
+# SDCC
+*.adb
+*.hex
+*.lst
+*.map
+*.asm
+*.ihx
+*.lk
+*.mem
+*.rel
+*.rst
+*.sym
+*.bin
+
+# project output
+*/out
+**/usb_blink_pc

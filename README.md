@@ -38,6 +38,8 @@ CH554提供丰富的接口资源，包括ADC模数转换、3组定时器和信�
 
 * 各种小封装可选：TSSOP20/SOP16/QFN16/MSOP10
 
+CH554/CH552具有Type-C CC功能，更多[WCH PD](http://www.wch.cn/search?q=USB+PD&t=all)方案，以及关于[USB-PD](https://github.com/Qful/PD)
+
 #### 相关开发板
 
 [![sites](docs/B.png)](https://item.taobao.com/item.htm?spm=a230r.1.14.160.1b402171ANBDsc&id=598357002103&ns=1&abbucket=18#detail)
